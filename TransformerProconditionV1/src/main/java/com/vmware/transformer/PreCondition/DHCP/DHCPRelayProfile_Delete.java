@@ -1,0 +1,13 @@
+package com.vmware.transformer.PreCondition.DHCP;
+
+import org.testng.annotations.Test;
+
+import com.vmware.transformer.service.DHCP.DHCPRelayProfileService;
+
+public class DHCPRelayProfile_Delete {
+	@Test
+	public void addDHCPRelayProfile(){
+		DHCPRelayProfileService dhcpRelayProfileService = new DHCPRelayProfileService();
+		dhcpRelayProfileService.cleanup_DHCPRelayprofile();
+	}
+}

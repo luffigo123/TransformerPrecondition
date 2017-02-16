@@ -1,0 +1,175 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.vmware</groupId>
+  <artifactId>TransformerPreconditionV1</artifactId>
+  <packaging>war</packaging>
+  <version>0.0.1-SNAPSHOT</version>
+  <name>TransformerPrecondition Maven Webapp</name>
+  <url>http://maven.apache.org</url>
+ <dependencies>
+  	
+  	<!--A pache HttpComponents Client   -->
+  	<dependency>
+	<groupId>org.apache.httpcomponents</groupId>
+	<artifactId>httpclient</artifactId>
+	<version>4.5</version>
+	</dependency>
+	<dependency>
+		<groupId>commons-httpclient</groupId>
+		<artifactId>commons-httpclient</artifactId>
+		<version>3.1</version>
+	</dependency>
+	
+	<!-- Java library for transforming beans, maps, collections, java arrays and XML to JSON. -->
+	<dependency>
+		<groupId>net.sf.json-lib</groupId>
+		<artifactId>json-lib</artifactId>
+		<version>2.4</version>
+		<classifier>jdk15</classifier>
+	</dependency>
+	
+	<!-- JSON In Java -->
+	<dependency>
+		<groupId>org.json</groupId>
+		<artifactId>json</artifactId>
+		<version>20151123</version>
+	</dependency>
+
+
+	<!-- jackson: General data-binding functionality for Jackson: works on core streaming API -->
+	<dependency>
+		<groupId>com.fasterxml.jackson.core</groupId>
+		<artifactId>jackson-databind</artifactId>
+		<version>2.6.3</version>
+	</dependency>
+	
+	<!-- Core Jackson abstractions, basic JSON streaming API implementation -->
+	<dependency>
+		<groupId>com.fasterxml.jackson.core</groupId>
+		<artifactId>jackson-core</artifactId>
+		<version>2.6.3</version>
+	</dependency>
+	
+	<!-- Core annotations used for value types, used by Jackson data binding package.  -->
+	<dependency>
+		<groupId>com.fasterxml.jackson.core</groupId>
+		<artifactId>jackson-annotations</artifactId>
+		<version>2.6.3</version>
+	</dependency>
+	
+	<!-- Data Mapper package is a high-performance data binding package built on Jackson JSON processor -->
+	<dependency>
+		<groupId>org.codehaus.jackson</groupId>
+		<artifactId>jackson-mapper-asl</artifactId>
+		<version>1.9.13</version>
+	</dependency>
+	
+	<!-- Jackson is a high-performance JSON processor (parser, generator)  -->
+	<dependency>
+		<groupId>org.codehaus.jackson</groupId>
+		<artifactId>jackson-core-asl</artifactId>
+		<version>1.9.13</version>
+	</dependency>
+	
+	<!-- Spring Context  -->
+	<dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-context</artifactId>
+		<version>4.2.1.RELEASE</version>
+	</dependency>
+	
+	<!-- Google Gson library  -->
+	<dependency>
+		<groupId>com.google.code.gson</groupId>
+		<artifactId>gson</artifactId>
+		<version>2.4</version>
+	</dependency>
+	
+	<!-- Testing framework for Java  -->
+	<dependency>
+		<groupId>org.testng</groupId>
+		<artifactId>testng</artifactId>
+		<version>6.9.9</version>
+	</dependency>
+	
+	<!-- Apache Log4j 1.2   -->
+	<dependency>
+		<groupId>log4j</groupId>
+		<artifactId>log4j</artifactId>
+		<version>1.2.17</version>
+	</dependency>
+	
+	<!-- Ganymed SSH-2: Java based SSH-2 Protocol Implementation  -->
+	 <dependency>
+		<groupId>ch.ethz.ganymed</groupId>
+		<artifactId>ganymed-ssh2</artifactId>
+		<version>build210</version>
+	</dependency>
+	
+	<!--  JSch is a pure Java implementation of SSH2 -->
+	<dependency>
+	    <groupId>com.jcraft</groupId>
+	    <artifactId>jsch</artifactId>
+	    <version>0.1.54</version>
+	</dependency>
+	
+	
+	<!-- dom4j: the flexible XML framework for Java  -->
+	<dependency>
+		<groupId>dom4j</groupId>
+		<artifactId>dom4j</artifactId>
+		<version>1.6.1</version>
+	</dependency>
+	
+	<!-- Third part jar, glogger.jar(logmodule: Rite offered) -->
+	<dependency>
+	  <groupId>com.vmware</groupId>
+	  <artifactId>logmodule</artifactId>
+	  <version>1.6</version>
+	</dependency>
+
+	
+  </dependencies>
+  
+ 	<build>
+ 		<plugins>
+
+ 			<!-- invoke testng.xml file -->
+<!--  			<plugin>
+ 				<groupId>org.apache.maven.plugins</groupId>
+ 				<artifactId>maven-surefire-plugin</artifactId>
+ 				<version>2.5</version>  
+    				<configuration>  
+        				<suiteXmlFiles>  
+            				<suiteXmlFile>testng.xml</suiteXmlFile>  
+        				</suiteXmlFiles>  
+    				</configuration> 
+ 			</plugin> -->
+ 			<plugin>
+		        <groupId>org.apache.maven.plugins</groupId>
+		        <artifactId>maven-surefire-plugin</artifactId>
+		        <version>2.19.1</version>
+		        <configuration>
+		          <suiteXmlFiles>
+		            <suiteXmlFile>testng.xml</suiteXmlFile>
+		          </suiteXmlFiles>
+		        </configuration>
+		    </plugin>
+ 			
+ 			<!-- avoid gbk mapping encoding problem -->
+ 			<plugin>
+ 				<groupId>org.apache.maven.plugins</groupId>  
+			    <artifactId>maven-compiler-plugin</artifactId>  
+			    <version>2.3.1</version>  
+			    <configuration>
+			        <!--assertions (-source 1.8)  --> 
+			        <source>1.8</source>
+			        <!-- JVM 1.8 (-target 1.8) -->
+			        <target>1.8</target>  
+			        <encoding>utf8</encoding>    
+			    </configuration>
+ 			</plugin>
+ 		</plugins>
+ 	</build>
+</project>

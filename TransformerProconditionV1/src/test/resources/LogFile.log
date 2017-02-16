@@ -1,0 +1,40 @@
+INFO (org.springframework.context.support.ClassPathXmlApplicationContext:573)- Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@1f8bee4: startup date [Thu Feb 16 11:25:25 CST 2017]; root of context hierarchy
+INFO (org.springframework.beans.factory.xml.XmlBeanDefinitionReader:317)- Loading XML bean definitions from class path resource [ApplicationContext.xml]
+INFO (root:200)- 
+
+jsonArray: []
+INFO (root:200)- 
+
+jsonArray: [{"_create_time":1487244509474,"_last_modified_user":"admin","_revision":0,"ip_addresses":["192.168.1.1"],"_system_owned":false,"resource_type":"IPSet","description":"ÖÜß","_last_modified_time":1487244509474,"id":"a1ff41fc-04d1-4f5e-ac1d-2ce232c867f6","display_name":"ÖÜß","_create_user":"admin"}]
+INFO (org.springframework.context.support.ClassPathXmlApplicationContext:573)- Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@dd0d4b: startup date [Thu Feb 16 11:25:35 CST 2017]; root of context hierarchy
+INFO (org.springframework.beans.factory.xml.XmlBeanDefinitionReader:317)- Loading XML bean definitions from class path resource [ApplicationContext.xml]
+INFO (root:200)- 
+
+jsonArray: [{"_create_time":1487244509474,"_last_modified_user":"admin","_revision":0,"ip_addresses":["192.168.1.1"],"_system_owned":false,"resource_type":"IPSet","description":"ÖÜß","_last_modified_time":1487244509474,"id":"a1ff41fc-04d1-4f5e-ac1d-2ce232c867f6","display_name":"ÖÜß","_create_user":"admin"}]
+INFO (root:35)- 
+
+jsonArray: [{"_create_time":1487244509474,"_last_modified_user":"admin","_revision":0,"ip_addresses":["192.168.1.1"],"_system_owned":false,"resource_type":"IPSet","description":"ÖÜß","_last_modified_time":1487244509474,"id":"a1ff41fc-04d1-4f5e-ac1d-2ce232c867f6","display_name":"ÖÜß","_create_user":"admin"}]
+INFO (root:46)- Target Property value : a1ff41fc-04d1-4f5e-ac1d-2ce232c867f6
+INFO (root:200)- 
+
+jsonArray: []
+INFO (org.springframework.context.support.ClassPathXmlApplicationContext:573)- Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@dd0d4b: startup date [Thu Feb 16 11:26:43 CST 2017]; root of context hierarchy
+INFO (org.springframework.beans.factory.xml.XmlBeanDefinitionReader:317)- Loading XML bean definitions from class path resource [ApplicationContext.xml]
+INFO (root:200)- 
+
+jsonArray: []
+INFO (root:200)- 
+
+jsonArray: [{"_create_time":1487244587880,"_last_modified_user":"admin","_revision":0,"_system_owned":false,"resource_type":"MACSet","description":"ÖÜß","_last_modified_time":1487244587880,"id":"3325a44f-d18f-49e5-b6f0-12e5203c34eb","display_name":"ÖÜß","mac_addresses":["00:11:22:33:44:55"],"_create_user":"admin"}]
+INFO (org.springframework.context.support.ClassPathXmlApplicationContext:573)- Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@dd0d4b: startup date [Thu Feb 16 11:26:51 CST 2017]; root of context hierarchy
+INFO (org.springframework.beans.factory.xml.XmlBeanDefinitionReader:317)- Loading XML bean definitions from class path resource [ApplicationContext.xml]
+INFO (root:200)- 
+
+jsonArray: [{"_create_time":1487244587880,"_last_modified_user":"admin","_revision":0,"_system_owned":false,"resource_type":"MACSet","description":"ÖÜß","_last_modified_time":1487244587880,"id":"3325a44f-d18f-49e5-b6f0-12e5203c34eb","display_name":"ÖÜß","mac_addresses":["00:11:22:33:44:55"],"_create_user":"admin"}]
+INFO (root:35)- 
+
+jsonArray: [{"_create_time":1487244587880,"_last_modified_user":"admin","_revision":0,"_system_owned":false,"resource_type":"MACSet","description":"ÖÜß","_last_modified_time":1487244587880,"id":"3325a44f-d18f-49e5-b6f0-12e5203c34eb","display_name":"ÖÜß","mac_addresses":["00:11:22:33:44:55"],"_create_user":"admin"}]
+INFO (root:46)- Target Property value : 3325a44f-d18f-49e5-b6f0-12e5203c34eb
+INFO (root:200)- 
+
+jsonArray: []
