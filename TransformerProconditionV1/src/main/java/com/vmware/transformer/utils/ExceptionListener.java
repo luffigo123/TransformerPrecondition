@@ -20,7 +20,7 @@ public class ExceptionListener extends TestListenerAdapter{
 			
 		}
 		if (testResult.getMethod().getMethodName().equals("suiteSetUp")) {
-			TestBaseLog.suiteCleanUp();
+//			TestBaseLog.suiteCleanUp();
 		}
 	}
 }

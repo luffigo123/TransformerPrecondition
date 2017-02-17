@@ -2,7 +2,8 @@ package com.vmware.transformer.service.Fabric;
 
 import java.util.ArrayList;
 
-import com.vmware.g11n.log.GLogger;
+import org.apache.log4j.Logger;
+
 import com.vmware.transformer.model.Fabric.HostNode;
 import com.vmware.transformer.model.Fabric.HostSwitch;
 import com.vmware.transformer.model.Fabric.HostSwitchProfileId;
@@ -17,6 +18,7 @@ import com.vmware.transformer.service.Inventory.IPPoolService;
 import com.vmware.transformer.utils.DefaultEnvironment;
 import com.vmware.transformer.utils.GetInputString;
 import com.vmware.transformer.utils.JsonUtils;
+import com.vmware.transformer.utils.Log4jInstance;
 import com.vmware.transformer.utils.SpringUtils;
 import com.vmware.transformer.utils.VerifyUtils;
 
@@ -25,7 +27,9 @@ public class TransportNodeService {
 	private Service service = null;
 	private String url = null;
 	
-	public static GLogger log = GLogger.getInstance(TransportNodeService.class.getName());
+//	public static GLogger log = GLogger.getInstance(TransportNodeService.class.getName());
+	
+	public static Logger log = Log4jInstance.getLoggerInstance();
 	
 	//set default TransportZone dsplay_name
 //	public String transNode_esxihost_diaplayName = "ESXiHostNode" + TestData.NativeString;
