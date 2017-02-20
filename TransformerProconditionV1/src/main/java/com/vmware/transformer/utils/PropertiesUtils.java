@@ -41,7 +41,7 @@ public class PropertiesUtils {
 				fileName = "Super.properties";
 				break;
 			case "Compose":
-				fileName = "Super.properties";
+				fileName = "Compose.properties";
 				break;
 			default:
 				fileName = "EN.properties";

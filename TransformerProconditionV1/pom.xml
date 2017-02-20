@@ -123,12 +123,12 @@
 	</dependency>
 	
 	<!-- Third part jar, glogger.jar(logmodule: Rite offered) -->
-	<dependency>
+<!-- 	<dependency>
 	  <groupId>com.vmware</groupId>
 	  <artifactId>logmodule</artifactId>
 	  <version>1.6</version>
 	</dependency>
-
+ -->
 	
   </dependencies>
   
