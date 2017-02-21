@@ -117,6 +117,7 @@ public class EdgeClusterService {
 
 	public EdgeCluster getDefaultEdgeCluster(){
 		this.setup_Precondition();
+
 		
 		String edgeClusterProfileId = this.ecpService.getObjectId(this.ecpService.display_name);
 		ArrayList<ClusterProfileBinding> edgeClusterProfile_list = new ArrayList<ClusterProfileBinding>();
@@ -132,55 +133,68 @@ public class EdgeClusterService {
 	}
 	
 
+//	public void setup_Precondition(){
+//		ecpService.setup_defaultEdgeClusterProfile();
+//		if(!this.tnService.isExist(this.tnService.transNode_edgehost_displayName)){
+//			this.tnService.addTransportNode(this.tnService.getTransportNode_WithEdgeHost_byCLICommand());
+//		}
+//	}
+//	
+//	public void clean_Precondition(){
+//		ecpService.cleanup_defaultEdgeClusterProfile();
+//		tnService.deleteTransportNode(tnService.transNode_edgehost_displayName);
+//		tnService.cleanPrecondition_EdgeTpye_ByCLICommand();
+//		
+//	}
+	
 	public void setup_Precondition(){
 		ecpService.setup_defaultEdgeClusterProfile();
-		if(!this.tnService.isExist(this.tnService.transNode_edgehost_displayName)){
-			this.tnService.addTransportNode(this.tnService.getTransportNode_WithEdgeHost_byCLICommand());
+		if(!this.tnService.isExist(this.tnService.transNode_edgehost_displayName)&&
+				!this.tnService.isExist(this.tnService.transNode_esxihost_diaplayName)){
+//			this.tnService.addTransportNode(this.tnService.getTransportNode_WithEdgeHost_byCLICommand());
+			this.tnService.setupTransprotNodes_includeEdgeESXiHost();
 		}
+	
 	}
 	
 	public void clean_Precondition(){
 		ecpService.cleanup_defaultEdgeClusterProfile();
-		tnService.deleteTransportNode(tnService.transNode_edgehost_displayName);
-		tnService.cleanPrecondition_EdgeTpye_ByCLICommand();
-		
+		this.tnService.cleanTransprotNodes_includeEdgeESXiHost();
 	}
 	
-	public EdgeCluster getSecondEdgeCluster_WithoutEdgeNode(){
-		this.ecpService.setup_secondEdgeClusterProfile();
-		String edgeClusterProfileId = this.ecpService.getObjectId(this.ecpService.display_name_02);
-		
-		EdgeCluster edgeCluster = null;
-
-		ArrayList<ClusterProfileBinding> edgeClusterProfile_list = new ArrayList<ClusterProfileBinding>();
-		ClusterProfileBinding cp001 = new ClusterProfileBinding(edgeClusterProfileId, "EdgeHighAvailabilityProfile");
-		edgeClusterProfile_list.add(cp001);
-		ArrayList<Member> member_List = new ArrayList<Member>(); 
-
-		edgeCluster =  new EdgeCluster(this.display_name_02, this.display_name_02, edgeClusterProfile_list, member_List);
-		return edgeCluster;
-	}
+//	public EdgeCluster getSecondEdgeCluster_WithoutEdgeNode(){
+//		this.ecpService.setup_secondEdgeClusterProfile();
+//		String edgeClusterProfileId = this.ecpService.getObjectId(this.ecpService.display_name_02);
+//		
+//		EdgeCluster edgeCluster = null;
+//
+//		ArrayList<ClusterProfileBinding> edgeClusterProfile_list = new ArrayList<ClusterProfileBinding>();
+//		ClusterProfileBinding cp001 = new ClusterProfileBinding(edgeClusterProfileId, "EdgeHighAvailabilityProfile");
+//		edgeClusterProfile_list.add(cp001);
+//		ArrayList<Member> member_List = new ArrayList<Member>(); 
+//
+//		edgeCluster =  new EdgeCluster(this.display_name_02, this.display_name_02, edgeClusterProfile_list, member_List);
+//		return edgeCluster;
+//	}
 	
-	public void setupSecondEdgeCluster_WithoutEdgeNode(){
-		EdgeCluster edgeClsuter = this.getSecondEdgeCluster_WithoutEdgeNode();
-		if(!this.isExist(this.display_name_02)){
-			this.addEdgeCuster(edgeClsuter);
-		}
-	}
-	
-	public void cleanSecondEdgeCluster_Env_WithoutEdgeNode(){
-		if(this.isExist(this.display_name_02)){
-			this.deleteEdgeCluster(this.display_name_02);
-		}
-		this.ecpService.cleanup_secondEdgeClusterProfile();
-	}
+//	public void setupSecondEdgeCluster_WithoutEdgeNode(){
+//		EdgeCluster edgeClsuter = this.getSecondEdgeCluster_WithoutEdgeNode();
+//		if(!this.isExist(this.display_name_02)){
+//			this.addEdgeCuster(edgeClsuter);
+//		}
+//	}
+//	
+//	public void cleanSecondEdgeCluster_Env_WithoutEdgeNode(){
+//		if(this.isExist(this.display_name_02)){
+//			this.deleteEdgeCluster(this.display_name_02);
+//		}
+//		this.ecpService.cleanup_secondEdgeClusterProfile();
+//	}
 	
 	public void setupDefaultEdgeCluster(){
 		if(!this.isExist(this.display_name)){
 			this.addEdgeCuster(this.getDefaultEdgeCluster());
-		}
-		
-		
+		}	
 		if(!this.isExist(display_name)){
 			assert false: "Failed to add EdgeCluster!";
 		}
@@ -190,12 +204,11 @@ public class EdgeClusterService {
 		if(this.isExist(this.display_name)){
 			this.deleteEdgeCluster(this.display_name);
 		}
-		
 		if(this.isExist(display_name)){
 			assert false: "Failed to delete EdgeCluster";
-		}
-		
-		this.clean_Precondition();
-		
+		}	
+		this.clean_Precondition();	
 	}
+	
+	
 }

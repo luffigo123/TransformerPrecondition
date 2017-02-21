@@ -46,6 +46,7 @@ public class RoutingService {
 		IntraTier0TransitNetwork = DefaultEnvironment.IntraTier0TransitNetwork;
 		IntraTier1TransitNetwork = DefaultEnvironment.IntraTier1TransitNetwork;
 		Tier0Tier1TransitNetwork = DefaultEnvironment.Tier0Tier1TransitNetwork;
+		
 	}
 	
 	public String getObjectId(String displayName){
@@ -243,12 +244,14 @@ try {
 		if(!this.edgeClusterService.isExist(edgeClusterName)){
 			this.edgeClusterService.addEdgeCuster(edgeCluster);
 		}
+			
 	}
 	
 	/**
 	 * clean the pre-condition environment
 	 */
 	public void cleanPrecondition(){
+		
 		if(this.edgeClusterService.isExist(this.edgeClusterService.display_name)){
 			this.edgeClusterService.deleteEdgeCluster(this.edgeClusterService.display_name);
 		}

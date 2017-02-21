@@ -95,8 +95,9 @@ public class TransportNodeService {
 		managerPassword = DefaultEnvironment.VSMPassword;
 		edgeIP = DefaultEnvironment.edgeNodeIP;
 		
-		transNode_esxihost_diaplayName = GetInputString.getInputString();
-		transNode_edgehost_displayName = GetInputString.getInputString();
+		String tempString = GetInputString.getInputString();
+		transNode_esxihost_diaplayName = tempString + tempString.substring(0,1);
+		transNode_edgehost_displayName = tempString + tempString.substring(0,2);
 		
 	}
 
@@ -645,4 +646,33 @@ public void cleanup_defaultTransNode_withESXiHost(){
 	}
 	this.cleanPrecondition_ForESXiHost();
 }
+
+	public void setupTransprotNodes_includeEdgeESXiHost(){
+		this.setup_defaultTransNode_withESXiHost_ByCommand();
+		this.setup_defaultTransNode_withEdgeNode();
+	}
+	
+	public void cleanTransprotNodes_includeEdgeESXiHost(){
+		if(this.isExist(this.transNode_esxihost_diaplayName)){
+			this.deleteTransportNode(this.transNode_esxihost_diaplayName);
+		}
+		if(this.isExist(transNode_esxihost_diaplayName)){
+			assert false: "Failed to delete TransportNode_WithESXiHost";
+		}
+		
+		if(this.isExist(this.transNode_edgehost_displayName)){
+			this.deleteTransportNode(this.transNode_edgehost_displayName);
+		}
+		if(this.isExist(transNode_edgehost_displayName)){
+			assert false: "Failed to delete TransportNode_WithEdgeHost";
+		}
+		
+		uplinkProfileService.cleanup_defaultUplinkProfile_FailOverType_noLags();
+		uplinkProfileService.cleanup_defaultUplinkProfile_FailOverType();
+		edgeNodeService.cleanup_EdgeNode_ByRegisterCommand();
+		hostNodeService.cleanup_defaultESXiHostByCommand();
+		transZoneService.cleanDefaultTransportZone();
+		ipPoolService.cleanup_defaultIPPool();
+	}
+
 }

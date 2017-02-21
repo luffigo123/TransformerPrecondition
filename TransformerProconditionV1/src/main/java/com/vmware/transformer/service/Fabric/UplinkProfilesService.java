@@ -51,7 +51,7 @@ public class UplinkProfilesService {
 		
 		//Fei edit on 2017-02-20 *************
 		String tempString = GetInputString.getInputString(); 
-
+		second_displayName = "UplinkProfile_NoLags" + tempString;
 		if(tempString.length() >= 28){
 			display_name = tempString;
 			lagsName = tempString.substring(0, 25);
@@ -223,7 +223,7 @@ public class UplinkProfilesService {
 			this.deleteUplinkProfile(this.second_displayName);
 		}
 		
-		if(this.isExist(display_name)){
+		if(this.isExist(second_displayName)){
 			assert false: "Failed to delete UplinkProfile_FailOverType_noLags";
 		}
 	}
