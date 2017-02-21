@@ -149,11 +149,13 @@ public class DHCPProfileService {
 	}
 	
 	public void setupPrecondition(){
-		this.edgeClusterService.setupDefaultEdgeCluster();
+//		this.edgeClusterService.setupDefaultEdgeCluster();
+		this.edgeClusterService.setupDefaultEdgeCluster_ForDHCP();
 	}
 	
 	public void cleanupPrecondition(){
-		this.edgeClusterService.cleanup_DefaultEdgeCluster();
+//		this.edgeClusterService.cleanup_DefaultEdgeCluster();
+		this.edgeClusterService.cleanup_DefaultEdgeCluster_ForDHCP();
 	}
 	
 	

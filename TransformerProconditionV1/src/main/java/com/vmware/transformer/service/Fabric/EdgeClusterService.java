@@ -132,20 +132,36 @@ public class EdgeClusterService {
 		return edgeCluster;
 	}
 	
+	public EdgeCluster getDefaultEdgeCluster_ForDHCP(){
+		this.setup_Precondition_ForDHCP();
 
-//	public void setup_Precondition(){
-//		ecpService.setup_defaultEdgeClusterProfile();
-//		if(!this.tnService.isExist(this.tnService.transNode_edgehost_displayName)){
-//			this.tnService.addTransportNode(this.tnService.getTransportNode_WithEdgeHost_byCLICommand());
-//		}
-//	}
-//	
-//	public void clean_Precondition(){
-//		ecpService.cleanup_defaultEdgeClusterProfile();
-//		tnService.deleteTransportNode(tnService.transNode_edgehost_displayName);
-//		tnService.cleanPrecondition_EdgeTpye_ByCLICommand();
-//		
-//	}
+		String edgeClusterProfileId = this.ecpService.getObjectId(this.ecpService.display_name);
+		ArrayList<ClusterProfileBinding> edgeClusterProfile_list = new ArrayList<ClusterProfileBinding>();
+		ClusterProfileBinding cp001 = new ClusterProfileBinding(edgeClusterProfileId, "EdgeHighAvailabilityProfile");
+		edgeClusterProfile_list.add(cp001);
+		
+		String tranNodeId = this.tnService.getObjectId(this.tnService.transNode_edgehost_displayName);
+		ArrayList<Member> member_List = new ArrayList<Member>(); 
+		Member m1 = new Member(tranNodeId);
+		member_List.add(m1);
+		EdgeCluster edgeCluster =  new EdgeCluster(display_name, display_name, edgeClusterProfile_list, member_List);
+		return edgeCluster;
+	}
+	
+
+	public void setup_Precondition_ForDHCP(){
+		ecpService.setup_defaultEdgeClusterProfile();
+		if(!this.tnService.isExist(this.tnService.transNode_edgehost_displayName)){
+			this.tnService.addTransportNode(this.tnService.getTransportNode_WithEdgeHost_byCLICommand());
+		}
+	}
+	
+	public void clean_Precondition_ForDHCP(){
+		ecpService.cleanup_defaultEdgeClusterProfile();
+		tnService.deleteTransportNode(tnService.transNode_edgehost_displayName);
+		tnService.cleanPrecondition_EdgeTpye_ByCLICommand();
+		
+	}
 	
 	public void setup_Precondition(){
 		ecpService.setup_defaultEdgeClusterProfile();
@@ -210,5 +226,22 @@ public class EdgeClusterService {
 		this.clean_Precondition();	
 	}
 	
+	public void setupDefaultEdgeCluster_ForDHCP(){
+		if(!this.isExist(this.display_name)){
+			this.addEdgeCuster(this.getDefaultEdgeCluster_ForDHCP());
+		}	
+		if(!this.isExist(display_name)){
+			assert false: "Failed to add EdgeCluster!";
+		}
+	}
 	
+	public void cleanup_DefaultEdgeCluster_ForDHCP(){
+		if(this.isExist(this.display_name)){
+			this.deleteEdgeCluster(display_name);
+		}
+		if(this.isExist(display_name)){
+			assert false: "Failed to delete EdgeCluster";
+		}	
+		this.clean_Precondition_ForDHCP();	
+	}
 }
