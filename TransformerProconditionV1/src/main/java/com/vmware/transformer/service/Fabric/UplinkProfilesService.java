@@ -42,15 +42,27 @@ public class UplinkProfilesService {
 		vmsIP = DefaultEnvironment.VSMIP;
 		url = "https://" + vmsIP + "/api/v1/host-switch-profiles/";
 		
-		lagsName = GetInputString.getInputString();
+		
+//		lagsName = GetInputString.getInputString();
 //		display_name = "UplinkProfile_FailOver" + lagsName;
-		display_name = lagsName;
-		second_displayName = "UplinkProfile_NoLags" + lagsName;
+//		second_displayName = "UplinkProfile_NoLags" + lagsName;
+//		activeUplinkName = "activeUplink01" + lagsName;
+//		standbyUplinkName = "standbyUplink01" + lagsName;
 		
-		activeUplinkName = "activeUplink01" + lagsName;
-		standbyUplinkName = "standbyUplink01" + lagsName;
-		
-		
+		//Fei edit on 2017-02-20 *************
+		String tempString = GetInputString.getInputString(); 
+
+		if(tempString.length() >= 28){
+			display_name = tempString;
+			lagsName = tempString.substring(0, 25);
+			activeUplinkName = tempString.substring(0,12);
+			standbyUplinkName = tempString.substring(0,13);
+		}else{
+			display_name = tempString;
+			lagsName = tempString;
+			activeUplinkName = tempString + tempString.substring(0,1);
+			standbyUplinkName = tempString + tempString.substring(0,2);
+		}
 	}
 
 	public UplinkProfile getDefaultUplinkProfile(){
@@ -64,6 +76,7 @@ public class UplinkProfilesService {
 		ArrayList<Uplink> standby_list = new ArrayList<Uplink>();
 		standby_list.add(standby01);
 		Teaming teaming = new Teaming(active_list, standby_list, "FAILOVER_ORDER");
+	
 		Lags lags = new Lags(lagsName, "ACTIVE", "SRCDESTIPVLAN", "2", "SLOW");
 		ArrayList<Lags> lags_list = new ArrayList<Lags>();
 		lags_list.add(lags);
