@@ -7,8 +7,8 @@ import com.vmware.transformer.service.Fabric.EdgeNodeService;
 public class EdgeHostByCommand_Delete {
 	
 	@Test
-	public void addEdgeHost(){
+	public void deleteEdgeHost(){
 		EdgeNodeService edgeNodeService = new EdgeNodeService();
-		edgeNodeService.cleanup_EdgeNode_ByRegisterCommand();
+//		edgeNodeService.cleanup_EdgeNode_ByRegisterCommand();
 	}
 }

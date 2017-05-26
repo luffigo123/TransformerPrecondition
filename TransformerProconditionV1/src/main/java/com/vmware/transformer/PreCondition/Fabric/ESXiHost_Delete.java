@@ -9,6 +9,6 @@ public class ESXiHost_Delete {
 	@Test
 	public void deleteESXiHost(){
 		HostNodeService hostNodeService = new HostNodeService();
-		hostNodeService.cleanup_defaultESXiHostByCommand();
+//		hostNodeService.cleanup_defaultESXiHostByCommand();
 	}
 }
