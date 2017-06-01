@@ -4,11 +4,10 @@ import org.testng.annotations.Test;
 
 import com.vmware.transformer.service.Fabric.HostNodeService;
 
-public class ESXiHost_Delete {
-
+public class ESXiHost_Add_ByCommand {
 	@Test
-	public void deleteESXiHost(){
+	public void addESXiHost_byCommand(){
 		HostNodeService hostNodeService = new HostNodeService();
-//		hostNodeService.cleanup_defaultHostNode();
+		hostNodeService.setup_defaultESXiHostByCommand();
 	}
 }

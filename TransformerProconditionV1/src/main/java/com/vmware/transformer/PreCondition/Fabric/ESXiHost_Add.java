@@ -9,7 +9,8 @@ public class ESXiHost_Add {
 	@Test
 	public void addESXiHost(){
 		HostNodeService hostNodeService = new HostNodeService();
-		hostNodeService.setup_defaultESXiHostByCommand();
+//		hostNodeService.setup_defaultESXiHostByCommand();
+		hostNodeService.setup_defaultHostNode();
 	}
 
 }

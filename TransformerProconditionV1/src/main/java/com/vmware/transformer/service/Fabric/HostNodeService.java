@@ -2,12 +2,15 @@ package com.vmware.transformer.service.Fabric;
 
 import java.util.ArrayList;
 
+import org.apache.log4j.Logger;
+
 import com.vmware.transformer.model.Fabric.HostNode;
 import com.vmware.transformer.model.Fabric.HostNode.Host_Credential;
 import com.vmware.transformer.service.Service;
 import com.vmware.transformer.utils.DefaultEnvironment;
 import com.vmware.transformer.utils.GetInputString;
 import com.vmware.transformer.utils.JsonUtils;
+import com.vmware.transformer.utils.Log4jInstance;
 import com.vmware.transformer.utils.SSHUtils;
 import com.vmware.transformer.utils.SpringUtils;
 import com.vmware.transformer.utils.VerifyUtils;
@@ -33,6 +36,8 @@ public class HostNodeService {
 	public String os_type = "ESXI";
 	//HostNode,EdgeNode
 	public String resource_type = "HostNode";
+	
+	Logger log = Log4jInstance.getLoggerInstance();
 	
 	public HostNodeService() {
 		super();
@@ -189,6 +194,39 @@ public class HostNodeService {
 	}
 	
 	/**
+	 * check the node status whether installed successfully during the time
+	 * @param minutes
+	 * @param nodeId
+	 * @param key
+	 * @param valueType				string | int | boolean
+	 * @param checkItemStatusValue  INSTALL_SUCCESSFUL
+	 * @return
+	 */
+	public boolean isNodeReady(int minutes, String nodeId, String key, String valueType, String checkItemStatusValue){
+		boolean result = false;
+		JsonUtils util = new JsonUtils();
+		String url = this.url + nodeId + "/status";
+		String queryInfo = "";
+		int begin = 0;
+		while(begin <= (minutes * 60)){
+			queryInfo = service.queryObject(url);
+			String keyValue = util.getJsonItemValue(queryInfo, key, valueType);
+			if(checkItemStatusValue.equalsIgnoreCase(keyValue)){
+				result = true;
+				break;
+			}else{
+				try {
+					Thread.sleep(20000);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+				begin = begin + 20;
+			}
+		}
+		return result;
+	}
+	
+	/**
 	 * 	 Register host to manager by esxi shell command
 	 * 
 	 * e.g step.1: "/opt/vmware/nsx-cli/bin/scripts/nsxcli"
@@ -228,6 +266,12 @@ public class HostNodeService {
 		if(!this.isExist(this.display_name)){
 			this.addNode(this.getDefaultHostNode());
 		}
+		boolean status = this.isNodeReady(15, this.getObjectId(display_name), "host_node_deployment_status", "string","INSTALL_SUCCESSFUL");
+		if(!status){
+			log.error("The host status is not UP, please check up the host whether is ready");
+		}else{
+			log.info("The host Node is ready!");
+		}
 	}
 	
 	public void cleanup_defaultHostNode(){
@@ -242,6 +286,14 @@ public class HostNodeService {
 			this.registerESXiHostToManager(this.managerIP, this.managerUserName, this.managerPasswd, 
 					this.host001_IPAddress, this.hostUserName, this.hostPassword);
 		}
+		
+		boolean status = this.isNodeReady(15, this.getObjectId(defaultHostName), "host_node_deployment_status", "string","INSTALL_SUCCESSFUL");
+		if(!status){
+			log.error("The host status is not UP, please check up the host whether is ready");
+		}else{
+			log.info("The host Node is ready!");
+		}
+		
 	}
 	
 	public void cleanup_defaultESXiHostByCommand(){
