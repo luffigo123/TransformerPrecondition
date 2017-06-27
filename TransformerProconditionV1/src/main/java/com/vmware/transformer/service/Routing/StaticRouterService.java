@@ -25,7 +25,7 @@ public class StaticRouterService {
 	public RoutingService routingService = null;
 	public RouterPortService routerPortService = null;
 	
-	public String StaticRoute_NextHopIP_ForUplinkRouterPort = DefaultEnvironment.StaticRoute_NextHopIP_ForUplinkRouterPort;
+	public String StaticRoute_NextHopIP_ForUplinkRouterPort = DefaultEnvironment.StaticRoute_NextHopIP_Tier0AA;
 	public String StaticRoute_NextHopIP_ForDownlinkRouterPort = DefaultEnvironment.StaticRoute_NextHopIP_ForDownlinkRouterPort;
 	public String staticRoute_Network = DefaultEnvironment.staticRoute_Network;
 	

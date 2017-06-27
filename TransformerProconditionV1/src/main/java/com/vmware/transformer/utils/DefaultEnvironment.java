@@ -45,23 +45,37 @@ public class DefaultEnvironment {
 	//Routing network info
 	public static final String IntraTier0TransitNetwork = cfg.ConfigMap.get("IntraTier0TransitNetwork");
 	public static final String IntraTier1TransitNetwork = cfg.ConfigMap.get("IntraTier1TransitNetwork");
-	public static final String DownlinkRouterPortIPAdress = cfg.ConfigMap.get("DownlinkRouterPortIPAdress");
-	public static final String UplinkRouterPortIPAddress = cfg.ConfigMap.get("UplinkRouterPortIPAddress");
 	public static final String Tier0Tier1TransitNetwork = cfg.ConfigMap.get("Tier0Tier1TransitNetwork");
+	
+	//RouterPort info
+	public static final String Tier1RouterPortIPAdress01 = cfg.ConfigMap.get("Tier1RouterPortIPAdress01");
+	public static final String Tier1RouterPortIPAdress02 = cfg.ConfigMap.get("Tier1RouterPortIPAdress02");
+	public static final String Tier1RouterPortIPAdress03 = cfg.ConfigMap.get("Tier1RouterPortIPAdress03");
+	public static final String Tier0RouterPort_Uplink_IPAddress = cfg.ConfigMap.get("Tier0RouterPort_Uplink_IPAddress");
+	public static final String Tier0RouterPort_DownLink_IPAddress = cfg.ConfigMap.get("Tier0RouterPort_DownLink_IPAddress");
+	public static final String Tier0RouterPort_Loopback_IPAddress = cfg.ConfigMap.get("Tier0RouterPort_Loopback_IPAddress");
+	public static final String Tier0RouterPort02_Uplink_IPAddress = cfg.ConfigMap.get("Tier0RouterPort02_Uplink_IPAddress");
+	public static final String Tier0RouterPort02_DownLink_IPAddress = cfg.ConfigMap.get("Tier0RouterPort02_DownLink_IPAddress");
+	public static final String Tier0RouterPort02_Loopback_IPAddress = cfg.ConfigMap.get("Tier0RouterPort02_Loopback_IPAddress");
+	
+	//Static Router info
 	public static final String staticRoute_Network = cfg.ConfigMap.get("staticRoute_Network");
 	public static final String StaticRoute_NextHopIP_ForDownlinkRouterPort = cfg.ConfigMap.get("StaticRoute_NextHopIP_ForDownlinkRouterPort");
-	public static final String StaticRoute_NextHopIP_ForUplinkRouterPort = cfg.ConfigMap.get("StaticRoute_NextHopIP_ForUplinkRouterPort");
+	public static final String StaticRoute_NextHopIP_Tier0AA = cfg.ConfigMap.get("StaticRoute_NextHopIP_Tier0AA");
 	
+	//IP Prefix List info
 	public static final String ipPrefixList_Network = cfg.ConfigMap.get("ipPrefixList_Network");
 	public static final String ipPrefixList_ge = cfg.ConfigMap.get("ipPrefixList_ge");
 	public static final String ipPrefixList_le = cfg.ConfigMap.get("ipPrefixList_le");
 	public static final String ipPrefixList_action = cfg.ConfigMap.get("ipPrefixList_action");
 	
+	//Router Map info
 	public static final String routeMap_AS = cfg.ConfigMap.get("routeMap_AS");
 	public static final String routeMap_weight = cfg.ConfigMap.get("routeMap_weight");
 	public static final String routeMap_MED = cfg.ConfigMap.get("routeMap_MED");
 	public static final String routMap_action = cfg.ConfigMap.get("routMap_action");
 	public static final String routeMap_community = cfg.ConfigMap.get("routeMap_community");
+	
 	
 	public static final String BGP_Config_enabled = cfg.ConfigMap.get("BGP_Config_enabled");
 	public static final String BGP_Config_ecmp = cfg.ConfigMap.get("BGP_Config_ecmp");
@@ -78,9 +92,22 @@ public class DefaultEnvironment {
 	public static final String BFD_peer_receive_interval = cfg.ConfigMap.get("BFD_peer_receive_interval");
 	public static final String BFD_peer_declare_dead_multiple = cfg.ConfigMap.get("BFD_peer_declare_dead_multiple");
 	
-	public static final String NAT_source_Network = cfg.ConfigMap.get("NAT_source_Network");
-	public static final String NAT_translated_Network = cfg.ConfigMap.get("NAT_translated_Network");
-	public static final String NAT_destination_Network = cfg.ConfigMap.get("NAT_destination_Network");
+	// NAT info
+	public static final String Tier1RouterLeft_SNAT_SourceNetwork = cfg.ConfigMap.get("Tier1RouterLeft_SNAT_SourceNetwork");
+	public static final String Tier1RouterLeft_SNAT_TranslatedNetwork = cfg.ConfigMap.get("Tier1RouterLeft_SNAT_TranslatedNetwork");
+	public static final String Tier1RouterLeft_SNAT_DestinationNetwork = cfg.ConfigMap.get("Tier1RouterLeft_SNAT_DestinationNetwork");
+	public static final String Tier1RouterRight_DNAT_SourceNetwork = cfg.ConfigMap.get("Tier1RouterRight_DNAT_SourceNetwork");
+	public static final String Tier1RouterRight_DNAT_TranslatedNetwork = cfg.ConfigMap.get("Tier1RouterRight_DNAT_TranslatedNetwork");
+	public static final String Tier1RouterRight_DNAT_DestinationNetwork = cfg.ConfigMap.get("Tier1RouterRight_DNAT_DestinationNetwork");
+	public static final String Tier0Rouer_AS_SNAT_SourceNetwork = cfg.ConfigMap.get("Tier0Rouer_AS_SNAT_SourceNetwork");
+	public static final String Tier0Rouer_AS_SNAT_DestinationNetwork = cfg.ConfigMap.get("Tier0Rouer_AS_SNAT_DestinationNetwork");
+	public static final String Tier0Rouer_AS_SNAT_TranslatedNetwork = cfg.ConfigMap.get("Tier0Rouer_AS_SNAT_TranslatedNetwork");
+	public static final String Tier0Rouer_AS_DNAT_SourceNetwork = cfg.ConfigMap.get("Tier0Rouer_AS_DNAT_SourceNetwork");
+	public static final String Tier0Rouer_AS_DNAT_DestiantionNetwork = cfg.ConfigMap.get("Tier0Rouer_AS_DNAT_DestiantionNetwork");
+	public static final String Tier0Rouer_AS_DNAT_TranslatedNetwork = cfg.ConfigMap.get("Tier0Rouer_AS_DNAT_TranslatedNetwork");
+	public static final String Tier0Rouer_AA_ReflexiveNAT_SourceNetwork = cfg.ConfigMap.get("Tier0Rouer_AA_ReflexiveNAT_SourceNetwork");
+	public static final String Tier0Rouer_AA_ReflexiveNAT_TranslatedNetwork = cfg.ConfigMap.get("Tier0Rouer_AA_ReflexiveNAT_TranslatedNetwork");
+	
 	
 	public static final String Advertise_network = cfg.ConfigMap.get("Advertise_network");
 	

@@ -18,7 +18,7 @@ public class RoutingNatService {
 	public String logicalRouterId = "";
 	public String logiclaRouter_DisplayName = "";
 	
-	public String match_source_network = DefaultEnvironment.NAT_source_Network;
+	public String match_source_network = DefaultEnvironment.Tier1RouterLeft_SNAT_SourceNetwork;
 	
 	/**
 	 * 
@@ -134,7 +134,7 @@ public class RoutingNatService {
 	
 	public NatRule getDefaultNatRule(){
 //		String match_source_network = DefaultEnvironment.NAT_source_Network;
-		String translated_network = DefaultEnvironment.NAT_translated_Network;
+		String translated_network = DefaultEnvironment.Tier1RouterLeft_SNAT_TranslatedNetwork;
 		String rule_priority = "1024";
 		String action = "REFLEXIVE";
 		String enabled = "true";

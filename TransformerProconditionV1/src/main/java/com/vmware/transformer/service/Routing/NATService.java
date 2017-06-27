@@ -18,7 +18,7 @@ public class NATService {
 	public String logicalRouterId = "";
 	public String logiclaRouter_DisplayName = "";
 	
-	public String match_source_network = DefaultEnvironment.NAT_source_Network;
+	public String match_source_network = DefaultEnvironment.Tier1RouterLeft_SNAT_SourceNetwork;
 
 	/**
 	 * 
@@ -168,8 +168,8 @@ public class NATService {
 	 * @return
 	 */
 	public RouteNatRule getDefaultRouteNatRule(String type){
-		String match_destination_network = DefaultEnvironment.NAT_destination_Network;
-		String translated_network = DefaultEnvironment.NAT_translated_Network;
+		String match_destination_network = DefaultEnvironment.Tier1RouterLeft_SNAT_DestinationNetwork;
+		String translated_network = DefaultEnvironment.Tier1RouterLeft_SNAT_TranslatedNetwork;
 		String rule_priority = "1024";
 		String action = type;
 		String enabled = "true";

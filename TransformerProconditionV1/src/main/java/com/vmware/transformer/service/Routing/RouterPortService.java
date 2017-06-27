@@ -33,8 +33,8 @@ public class RouterPortService {
 //	public DHCPServerService dhcpService = null;
 	public DHCPRelayServerService dhcpRelayServerService = null;
 	
-	public String DownlinkRouterPortIPAdress = DefaultEnvironment.DownlinkRouterPortIPAdress;
-	public String UplinkRouterPortIPAddress = DefaultEnvironment.UplinkRouterPortIPAddress;
+	public String DownlinkRouterPortIPAdress = DefaultEnvironment.Tier1RouterPortIPAdress01;
+	public String UplinkRouterPortIPAddress = DefaultEnvironment.Tier0RouterPort_Uplink_IPAddress;
 	
 	public RouterPortService() {
 		super();

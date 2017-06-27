@@ -556,7 +556,7 @@ public class TransportNodeService {
 		log.info("Clear the pre-condition info!");
 		ipPoolService.cleanup_defaultIPPool();
 		uplinkProfileService.cleanup_defaultUplinkProfile_FailOverType();
-//		hostNodeService.cleanup_defaultESXiHostByCommand();
+		hostNodeService.cleanup_defaultESXiHostByCommand();
 		transZoneService.cleanDefaultTransportZone();
 
 	}
@@ -580,7 +580,7 @@ public class TransportNodeService {
 		ipPoolService.cleanup_defaultIPPool();
 		transZoneService.cleanDefaultTransportZone();
 		uplinkProfileService.cleanup_defaultUplinkProfile_FailOverType_noLags();
-//		edgeNodeService.cleanup_EdgeNode_ByRegisterCommand();
+		edgeNodeService.cleanup_EdgeNode_ByRegisterCommand();
 		
 	}
 	
@@ -644,6 +644,11 @@ public void cleanup_defaultTransNode_withESXiHost(){
 	if(this.isExist(this.transNode_esxihost_diaplayName)){
 		this.deleteTransportNode(this.transNode_esxihost_diaplayName);
 	}
+	try{
+		Thread.sleep(7000);
+	}catch(Exception e){
+		e.printStackTrace();
+	}
 	this.cleanPrecondition_ForESXiHost();
 }
 
@@ -667,10 +672,16 @@ public void cleanup_defaultTransNode_withESXiHost(){
 			assert false: "Failed to delete TransportNode_WithEdgeHost";
 		}
 		
+		try{
+			Thread.sleep(7000);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		
 		uplinkProfileService.cleanup_defaultUplinkProfile_FailOverType_noLags();
 		uplinkProfileService.cleanup_defaultUplinkProfile_FailOverType();
-//		edgeNodeService.cleanup_EdgeNode_ByRegisterCommand();
-//		hostNodeService.cleanup_defaultESXiHostByCommand();
+		edgeNodeService.cleanup_EdgeNode_ByRegisterCommand();
+		hostNodeService.cleanup_defaultESXiHostByCommand();
 		transZoneService.cleanDefaultTransportZone();
 		ipPoolService.cleanup_defaultIPPool();
 	}

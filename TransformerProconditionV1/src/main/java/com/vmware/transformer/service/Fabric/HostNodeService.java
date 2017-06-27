@@ -110,7 +110,7 @@ public class HostNodeService {
 	
 	public void deleteNode(String displayName){
 		String tzid = this.getObjectId(displayName);
-		String deleteUrl = url + tzid + "/?unprepare_host=false";
+		String deleteUrl = url + tzid + "/?unprepare_host=true";
 		service.deleteObject(deleteUrl);
 	}
 

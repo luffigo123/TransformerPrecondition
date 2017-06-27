@@ -9,6 +9,7 @@ public class TransportNode_WithESXiHost_Delete {
 	@Test
 	public void deleteTransportNode_WithESXiHost(){
 		TransportNodeService transportNodeService = new TransportNodeService();
-		transportNodeService.cleanup_defaultTransNode_withESXiHost_ByCommand();
+//		transportNodeService.cleanup_defaultTransNode_withESXiHost_ByCommand();
+		transportNodeService.cleanup_defaultTransNode_withESXiHost();
 	}
 }
