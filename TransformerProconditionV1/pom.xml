@@ -131,31 +131,26 @@
  -->
 	
   </dependencies>
-  
- 	<build>
+
+ 		<build>
  		<plugins>
 
  			<!-- invoke testng.xml file -->
-<!--  			<plugin>
- 				<groupId>org.apache.maven.plugins</groupId>
- 				<artifactId>maven-surefire-plugin</artifactId>
- 				<version>2.5</version>  
-    				<configuration>  
-        				<suiteXmlFiles>  
-            				<suiteXmlFile>testng.xml</suiteXmlFile>  
-        				</suiteXmlFiles>  
-    				</configuration> 
- 			</plugin> -->
  			<plugin>
 		        <groupId>org.apache.maven.plugins</groupId>
 		        <artifactId>maven-surefire-plugin</artifactId>
 		        <version>2.19.1</version>
 		        <configuration>
-		          <suiteXmlFiles>
-		            <suiteXmlFile>testng.xml</suiteXmlFile>
-		          </suiteXmlFiles>
+		         	<!-- <forkMode>once</forkMode>  -Dfile.encoding=UTF-8-->
+		         	<reuseForks>true</reuseForks>
+		         	<forkCount>1</forkCount>
+		        	<argLine>-Dfile.encoding=UTF-8 -DUSESSL=true -Xmx512m -XX:MaxPermSize=256m -XX:PermSize=256m -XX:+UseConcMarkSweepGC</argLine>
+		            <suiteXmlFiles>
+		            	<suiteXmlFile>testng.xml</suiteXmlFile>
+		            </suiteXmlFiles>
 		        </configuration>
 		    </plugin>
+
  			
  			<!-- avoid gbk mapping encoding problem -->
  			<plugin>
