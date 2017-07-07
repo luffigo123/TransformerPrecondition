@@ -93,13 +93,11 @@ try {
 	 * @param internal_transit_network
 	 * @return
 	 */
-	public LogicalRouterTier0 getTier0Router(String routerName,String edgeClusterId, String high_availability_mode, String internal_transit_network){
-//		this.setPrecondition();
-//		String edgeClusterId = edgeClusterId;
-		
-//		String internal_transit_network = this.IntraTier0TransitNetwork;
+	public LogicalRouterTier0 getTier0Router(String routerName,String edgeClusterId, String high_availability_mode, String internal_transit_network, String external_transit_networks){
+
 		ArrayList<String> advanceConfig_list = new ArrayList<String>();
-		advanceConfig_list.add(internal_transit_network);
+//		advanceConfig_list.add(internal_transit_network);
+		advanceConfig_list.add(external_transit_networks);
 		AdvanceConfig advance_config = new AdvanceConfig(internal_transit_network, advanceConfig_list);
 		
 		String router_type = "TIER0";

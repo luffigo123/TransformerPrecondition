@@ -98,7 +98,8 @@ public class NATServicePreCon {
 
 		String rule_priority = "1024";
 		String action = type;
-		String enabled = "true";
+//		String enabled = "true";
+		String enabled = "false";
 		String logging = "true";
 		
 		RouteNatRule routeNatRule = new RouteNatRule(rule_priority, action, sourceNetwork, destinationNetwork, translatedNetwork,enabled, logging);
@@ -114,7 +115,8 @@ public class NATServicePreCon {
 	public NatRule getReflexiveNatRule(String sourceNetwork, String translatedNetwork){
 		String rule_priority = "1024";
 		String action = "REFLEXIVE";
-		String enabled = "true";
+//		String enabled = "true";
+		String enabled = "false";
 		String logging = "true";
 		
 		NatRule natRule = new NatRule(sourceNetwork, translatedNetwork, rule_priority, action, enabled, logging);

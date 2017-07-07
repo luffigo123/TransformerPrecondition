@@ -8,32 +8,33 @@ public class CombineComponentsCases {
 	public void addRouterWithActiveActiveType(){
 		CombineComponentsServer combineComponentsServer = new CombineComponentsServer();
 		
-		combineComponentsServer.setupIPPool();
+//		combineComponentsServer.setupIPPool();
 		combineComponentsServer.setupTransportZone();
-		combineComponentsServer.setupFabricUplinkProfile_WithoutStandbyUplink();		
+		combineComponentsServer.setupFabricUplinkProfiles();	
 		combineComponentsServer.setupEdgeNodes();
-		combineComponentsServer.setupESXiNode();	
+		combineComponentsServer.setupESXiNode();		
 		combineComponentsServer.setupTransportNode_WithEdgeNodes();
-		combineComponentsServer.setupTransportNode_WithESXiNode();
-		combineComponentsServer.setupEdgeClusterProfile();	
-		combineComponentsServer.setupDHCPRelayProfile();
-		combineComponentsServer.setupDHCPRelayService();
-		combineComponentsServer.setupEdgeClusters();
-		combineComponentsServer.setupLogicalSwitches();
+		combineComponentsServer.setupTransportNode_WithESXiNode();	
+		combineComponentsServer.setupEdgeClusterProfile();		
+		combineComponentsServer.setupEdgeClusters();	
+		combineComponentsServer.setupLogicalSwitches();	
 		combineComponentsServer.setupTier0Routers();
-		combineComponentsServer.setupTier1Routers();
+		combineComponentsServer.setupTier1Routers();	
 		combineComponentsServer.setupLogicalPorts();
-		combineComponentsServer.setupRouterPorts();
+		combineComponentsServer.setupRouterPorts();	
 		combineComponentsServer.enableTier1RoutersAdvertisement();
 		combineComponentsServer.setupRouteIPPrefix_OnTier0Routers();
-		combineComponentsServer.setupRouterMap_OnTier0Routers();		
+		combineComponentsServer.setupRouterMap_OnTier0Routers();			
 		combineComponentsServer.enableTier0RoutersRedistributionService();
-		combineComponentsServer.addRedistributionCriteriaForTier0Routers();	
+		combineComponentsServer.addRedistributionCriteriaForTier0Routers();		
 		combineComponentsServer.setupNATRules_OnRouters();
 		combineComponentsServer.setupStaticRoutes();
 		combineComponentsServer.setupBGPConfiguration();
 		combineComponentsServer.setupBGPNeighborsOnRouters();
 	}
 	
+//	combineComponentsServer.setupDHCPRelayProfile();
+//	combineComponentsServer.setupDHCPRelayService();
+
 
 }

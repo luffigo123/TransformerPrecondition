@@ -81,7 +81,9 @@ public class CombineComponentsServer {
 	private String ippoolName;
 	private String transportZoneDisplayName;
 	private String hostSwitchName;
-	private String fabriUplinkProfileDisplayName;
+	private String fabriUplinkProfile_ForTN_EdgeType_displayName;
+	private String fabriUplinkProfile_ForTN_ESXiType_displayName;
+	
 	private String activeUplinkName;
 	private String esxiNodeName;
 	private String edgeTransportNode01_Name;
@@ -98,7 +100,7 @@ public class CombineComponentsServer {
 	private String logicalSwitch04_Name;
 	private String logicalSwitch05_Name;
 	
-	private String tier0RouterName_ActiveActiveType;
+	String tier0RouterName_ActiveActiveType;
 	private String tier0RouterName_ActiveStandbyType;
 	
 	private String tier1Router01_Name;
@@ -149,8 +151,16 @@ public class CombineComponentsServer {
 
 		ippoolName = "IPPool" + this.displayName;
 		transportZoneDisplayName = "transZone" + this.displayName;
+		
 		hostSwitchName = this.displayName;
-		fabriUplinkProfileDisplayName = "UplinkProfile_NoStandbyUplink" + this.displayName;
+		log.info("Make sure the hostSwitchName length is not exceed 12.");
+		if(hostSwitchName.length() >= 12){
+			hostSwitchName = hostSwitchName.substring(0, 9);
+		}
+		
+		fabriUplinkProfile_ForTN_EdgeType_displayName = "UP_for_Edge" + this.displayName;
+		fabriUplinkProfile_ForTN_ESXiType_displayName = "UP_For_Esxi" + this.displayName;
+		
 		activeUplinkName = this.checkNameLength(displayName);
 		esxiNodeName = "ESXiNode" + this.displayName;
 		
@@ -230,16 +240,27 @@ public class CombineComponentsServer {
 	}
 	
 	
-	/**
-	 * Create a Fabric UPlinkProfile without standby uplink
-	 */
-	public void setupFabricUplinkProfile_WithoutStandbyUplink(){	
-		UplinkProfile uplinkProfile = uplinkProfilesServicePreCon.getUplinkProfile_FailoverType_NoStandbyUplink_NoLags(fabriUplinkProfileDisplayName, activeUplinkName);
-		uplinkProfilesServicePreCon.addUplinkProfile(uplinkProfile);
+//	/**
+//	 * Create a Fabric UPlinkProfile without standby uplink
+//	 */
+//	public void setupFabricUplinkProfile_WithoutStandbyUplink(){	
+//		UplinkProfile uplinkProfile = uplinkProfilesServicePreCon.getUplinkProfile_FailoverType_NoStandbyUplink_NoLags(fabriUplinkProfileDisplayName, activeUplinkName);
+//		uplinkProfilesServicePreCon.addUplinkProfile(uplinkProfile);
+//	}
+	
+	public void setupFabricUplinkProfiles(){
+		log.info("Add default Uplink Profile for TransportNode_ESXiType!");
+		UplinkProfile uplinkProfile_ForESXiType = uplinkProfilesServicePreCon.getDefaultUplinkProfile(this.fabriUplinkProfile_ForTN_ESXiType_displayName);
+		uplinkProfilesServicePreCon.addUplinkProfile(uplinkProfile_ForESXiType);
+		
+		log.info("Add default Uplink Profile for TransportNode_EdgeType!");
+		UplinkProfile uplinkProfile_forEdgeType = uplinkProfilesServicePreCon.getUplinkProfile_FailoverType_NoStandbyUplink_NoLags(fabriUplinkProfile_ForTN_EdgeType_displayName, activeUplinkName);
+		uplinkProfilesServicePreCon.addUplinkProfile(uplinkProfile_forEdgeType);
 	}
 	
-	public String getFabricUplinkProfileId(){
-		return uplinkProfilesServicePreCon.getObjectId(this.fabriUplinkProfileDisplayName);
+	
+	public String getFabricUplinkProfileId(String fabricUplinkProfileName){
+		return uplinkProfilesServicePreCon.getObjectId(fabricUplinkProfileName);
 	}
 	
 	/**
@@ -298,10 +319,11 @@ public class CombineComponentsServer {
 		String transNodeName = this.esxiTransportNodeName;
 		String ipPoolId = this.getIPPoolId(this.ippoolName);
 		String tranZoneId = this.getTransZoneId();
-		String fabricUplinkProfileId = this.getFabricUplinkProfileId();
+		String fabricUplinkProfileId = this.getFabricUplinkProfileId(this.fabriUplinkProfile_ForTN_ESXiType_displayName);
 		
 		String esxiHostId = this.getESXiHostId(this.esxiNodeName);
-		TransportNode esxiTransNode = transportNodeServicePreCon.getTransportNode_WithESXiHost(transNodeName, esxiHostId, tranZoneId, this.hostSwitchName, this.activeUplinkName, fabricUplinkProfileId, ipPoolId);
+//		TransportNode esxiTransNode = transportNodeServicePreCon.getTransportNode_WithESXiHost(transNodeName, esxiHostId, tranZoneId, this.hostSwitchName, this.activeUplinkName, fabricUplinkProfileId, ipPoolId);
+		TransportNode esxiTransNode = transportNodeServicePreCon.getTransportNode_WithESXiHost(transNodeName, esxiHostId, tranZoneId, this.hostSwitchName, "uplink-1", fabricUplinkProfileId, ipPoolId);
 		transportNodeServicePreCon.addTransportNode(esxiTransNode);
 		
 		int minutes = 7;
@@ -323,7 +345,7 @@ public class CombineComponentsServer {
 //		String transNodeName = this.edgeTransportNode01_Name;
 		String ipPoolId = this.getIPPoolId(this.ippoolName);
 		String tranZoneId = this.getTransZoneId();
-		String fabricUplinkProfileId = this.getFabricUplinkProfileId();
+		String fabricUplinkProfileId = this.getFabricUplinkProfileId(this.fabriUplinkProfile_ForTN_EdgeType_displayName);
 			
 		int minutes = 7;
 		String key = "state";
@@ -438,14 +460,16 @@ public class CombineComponentsServer {
 		String edgeCluster01_Id = this.getEdgeClusterId(this.edgeCluster01_Name);
 		String high_availability_mode_aa = "ACTIVE_ACTIVE";
 		String internal_transit_network = DefaultEnvironment.IntraTier0TransitNetwork;
-		LogicalRouterTier0 tier0Router_aa = routingServicePreCon.getTier0Router(this.tier0RouterName_ActiveActiveType, edgeCluster01_Id, high_availability_mode_aa, internal_transit_network);
+		String external_transit_networks = DefaultEnvironment.Tier0Tier1TransitNetwork;
+		
+		LogicalRouterTier0 tier0Router_aa = routingServicePreCon.getTier0Router(this.tier0RouterName_ActiveActiveType, edgeCluster01_Id, high_availability_mode_aa, internal_transit_network,external_transit_networks);
 		routingServicePreCon.addLogicalRouter(tier0Router_aa);
 		
-		log.info("Create Tier0 Router with Actvie-Active type");
+		log.info("Create Tier0 Router with ACTIVE_STANDBY type");
 		String edgeCluster02_Id = this.getEdgeClusterId(this.edgeCluster02_Name);
 		String high_availability_mode_as = "ACTIVE_STANDBY";
 //		String internal_transit_network = DefaultEnvironment.IntraTier0TransitNetwork;
-		LogicalRouterTier0 tier0Router_as = routingServicePreCon.getTier0Router(this.tier0RouterName_ActiveStandbyType, edgeCluster02_Id, high_availability_mode_as, internal_transit_network);
+		LogicalRouterTier0 tier0Router_as = routingServicePreCon.getTier0Router(this.tier0RouterName_ActiveStandbyType, edgeCluster02_Id, high_availability_mode_as, internal_transit_network,external_transit_networks);
 		routingServicePreCon.addLogicalRouter(tier0Router_as);
 	}
 	

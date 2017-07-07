@@ -103,7 +103,7 @@ public class EdgeClusterProfileServicePreCon {
 
 	public EdgeClusterProfile getDefaultEdgeClusterProfile(String edgeClusterProfileName){
 		String resource_type = "EdgeHighAvailabilityProfile";
-		EdgeClusterProfile defaultEdgeClusterProfile = new EdgeClusterProfile(edgeClusterProfileName, edgeClusterProfileName, "1000", "2", "2", resource_type);
+		EdgeClusterProfile defaultEdgeClusterProfile = new EdgeClusterProfile(edgeClusterProfileName, edgeClusterProfileName, "1000", "255", "3", resource_type);
 		return defaultEdgeClusterProfile;
 	}
 	

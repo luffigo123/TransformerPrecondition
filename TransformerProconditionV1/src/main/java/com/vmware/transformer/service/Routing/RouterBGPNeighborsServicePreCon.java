@@ -1,5 +1,7 @@
 package com.vmware.transformer.service.Routing;
 
+import java.util.ArrayList;
+
 import com.vmware.transformer.model.Routing.BGPNeighbor;
 import com.vmware.transformer.service.Service;
 import com.vmware.transformer.utils.DefaultEnvironment;
@@ -141,7 +143,10 @@ public class RouterBGPNeighborsServicePreCon {
 		String hold_down_timer = "180";
 		String enable_bfd ="false";
 		
-		BGPNeighbor bgpNeightor = new BGPNeighbor(enabled, neighbor_address, description, remote_as, null, keep_alive_timer, hold_down_timer, enable_bfd, null);
+		ArrayList<String> source_addresses = new ArrayList<String>();
+		source_addresses.add("172.16.3.2");
+		
+		BGPNeighbor bgpNeightor = new BGPNeighbor(enabled, neighbor_address, description, remote_as, null, keep_alive_timer, hold_down_timer, enable_bfd, null,source_addresses);
 		return bgpNeightor;
 	}
 

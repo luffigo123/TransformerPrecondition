@@ -13,6 +13,15 @@ public class BGPNeighbor {
 	private String enable_bfd;
 	private BGPNeighbor_BFDconfig bfd_config;
 	private String _revision;
+	
+	private ArrayList<String> source_addresses;
+	
+	public ArrayList<String> getSource_addresses() {
+		return source_addresses;
+	}
+	public void setSource_addresses(ArrayList<String> source_addresses) {
+		this.source_addresses = source_addresses;
+	}
 	public String getEnabled() {
 		return enabled;
 	}
@@ -101,5 +110,37 @@ public class BGPNeighbor {
 		this.enable_bfd = enable_bfd;
 		this.bfd_config = bfd_config;
 	}
+	/**
+	 * 
+	 * @param enabled
+	 * @param neighbor_address
+	 * @param description
+	 * @param remote_as
+	 * @param address_families
+	 * @param keep_alive_timer
+	 * @param hold_down_timer
+	 * @param enable_bfd
+	 * @param bfd_config
+	 * @param source_addresses
+	 */
+	public BGPNeighbor(String enabled, String neighbor_address,
+			String description, String remote_as,
+			ArrayList<AddressFamily> address_families, String keep_alive_timer,
+			String hold_down_timer, String enable_bfd,
+			BGPNeighbor_BFDconfig bfd_config, ArrayList<String> source_addresses) {
+		super();
+		this.enabled = enabled;
+		this.neighbor_address = neighbor_address;
+		this.description = description;
+		this.remote_as = remote_as;
+		this.address_families = address_families;
+		this.keep_alive_timer = keep_alive_timer;
+		this.hold_down_timer = hold_down_timer;
+		this.enable_bfd = enable_bfd;
+		this.bfd_config = bfd_config;
+		this.source_addresses = source_addresses;
+	}
+	
+	
 	
 }

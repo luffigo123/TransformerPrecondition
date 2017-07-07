@@ -197,13 +197,7 @@ public class TransportNodeServicePreCon {
 	 */
 	public TransportNode getTransportNode_WithESXiHost(String transNodeName, String esxiHostId, String tranZoneId,String hostSwitchName, String activeUplinName, String uplinkProfileId, String ipPoolId){
 
-//		log.info("Step 1: Set up default Transport Zone.");
-//		String hostSwitchName = transZoneService.hostswitchName;
-//		String tranZoneId = transZoneService.getTransportZoneId(transZoneService.display_name);
-		
-//		log.info("Step 2: Set up Host Node");
-//		String hostNodeId  = hostNodeService.getObjectId(hostNodeName);
-//		log.info("waiting for the node status UP");
+
 	
 //		log.info("Step 3: Set up UplinkProfile.");
 //		String uplinkProfileId = uplinkProfileService.getObjectId(uplinkProfileName_forESXiHost);
@@ -211,8 +205,6 @@ public class TransportNodeServicePreCon {
 		String uplinkProfilekey = "UplinkHostSwitchProfile";
 		String deviceName = "vmnic1";
 		
-//		log.info("Step 4: Set up IP Pool.");
-//		String ipPoolId = ipPoolService.getObjectId(ipPoolName);
 		
 		log.info("According the tranZoneId to create TransportZoneEndpoint object for TransNode");
 		TransportZoneEndpoint transZoneEndpoint = new TransportZoneEndpoint(tranZoneId);
