@@ -8,7 +8,7 @@ public class CombineComponentsCases {
 	public void addRouterWithActiveActiveType(){
 		CombineComponentsServer combineComponentsServer = new CombineComponentsServer();
 		
-//		combineComponentsServer.setupIPPool();
+		combineComponentsServer.setupIPPool();
 		combineComponentsServer.setupTransportZone();
 		combineComponentsServer.setupFabricUplinkProfiles();	
 		combineComponentsServer.setupEdgeNodes();
