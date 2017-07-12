@@ -17,24 +17,20 @@ public class CombineComponentsCases {
 		combineComponentsServer.setupTransportNode_WithESXiNode();	
 		combineComponentsServer.setupEdgeClusterProfile();		
 		combineComponentsServer.setupEdgeClusters();	
-		combineComponentsServer.setupLogicalSwitches();	
+		combineComponentsServer.setupLogicalSwitches();		
 		combineComponentsServer.setupTier0Routers();
 		combineComponentsServer.setupTier1Routers();	
 		combineComponentsServer.setupLogicalPorts();
-		combineComponentsServer.setupRouterPorts();	
+		combineComponentsServer.setupRouterPorts_withoutDHCPrePlayServer();
 		combineComponentsServer.enableTier1RoutersAdvertisement();
 		combineComponentsServer.setupRouteIPPrefix_OnTier0Routers();
 		combineComponentsServer.setupRouterMap_OnTier0Routers();			
 		combineComponentsServer.enableTier0RoutersRedistributionService();
-		combineComponentsServer.addRedistributionCriteriaForTier0Routers();		
+		combineComponentsServer.addRedistributionCriteriaForTier0Routers();	
 		combineComponentsServer.setupNATRules_OnRouters();
 		combineComponentsServer.setupStaticRoutes();
 		combineComponentsServer.setupBGPConfiguration();
 		combineComponentsServer.setupBGPNeighborsOnRouters();
 	}
 	
-//	combineComponentsServer.setupDHCPRelayProfile();
-//	combineComponentsServer.setupDHCPRelayService();
-
-
 }

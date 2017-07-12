@@ -621,6 +621,61 @@ public class CombineComponentsServer {
 		routerPortServicePreCon.addLogicalRouterPort(tier0RouterPort02);
 	}
 	
+	/**
+	 * Create 3 RouterPorts for Tier1, named - tier1RouterPort01_Downlink, tier1RouterPort02_Downlink, tier1RouterPort03_Downlink
+	 * CReate 2 RouterPorts for Tier0, named - tier0RoutrPort01_Uplink, tier0RoutrPort02_Uplink
+	 * tier1RouterPort01_Downlink connect to LogicalSwitch01 and LogicalPort01
+	 * tier1RouterPort02_Downlink connect to LogicalSwitch02 and LogicalPort02
+	 * tier1RouterPort03_Downlink connect to LogicalSwitch04 and LogicalPort04
+	 * 
+	 * tier0RoutrPort01_Uplink connect to LogicalSwitch03 and LogicalPort03
+	 * tier0RoutrPort02_Uplink connect to LogicalSwitch05 and LogicalPort05
+	 */
+	public void setupRouterPorts_withoutDHCPrePlayServer(){
+		log.info("Add tier1 Router Port 01 Downlink type!");
+		String tier1Router01_Id = this.getRouterId(tier1Router01_Name);
+		String logicalPort01_Id = this.getLogicalPortId(logicalPort01_Name);
+		String tier1RouterPort01_Downlink_IPAddress = DefaultEnvironment.Tier1RouterPortIPAdress01;
+		
+		LogicalRouterPort tier1RouterPort01 = routerPortServicePreCon.getLogicalRouterPort_DownlinkType_02(this.tier1RouterPort01_Name, tier1Router01_Id, logicalPort01_Name, logicalPort01_Id, 
+				tier1RouterPort01_Downlink_IPAddress);
+		
+		routerPortServicePreCon.addLogicalRouterPort(tier1RouterPort01);
+		
+		log.info("Add tier1 Router Port 02 Downlink type!");
+		String tier1Router02_Id = this.getRouterId(tier1Router02_Name);
+		String logicalPort02_Id = this.getLogicalPortId(logicalPort02_Name);
+		String tier1RouterPort02_Downlink_IPAddress = DefaultEnvironment.Tier1RouterPortIPAdress02;
+		LogicalRouterPort tier1RouterPort02 = routerPortServicePreCon.getLogicalRouterPort_DownlinkType_02(this.tier1RouterPort02_Name, tier1Router02_Id, logicalPort02_Name, logicalPort02_Id, 
+				tier1RouterPort02_Downlink_IPAddress);
+		routerPortServicePreCon.addLogicalRouterPort(tier1RouterPort02);
+		
+		log.info("Add tier1 Router Port 03 Downlink type!Connect to LogicalPort04");
+		String tier1Router03_Id = this.getRouterId(tier1Router03_Name);
+		String logicalPort04_Id = this.getLogicalPortId(logicalPort04_Name);
+		String tier1RouterPort03_Downlink_IPAddress = DefaultEnvironment.Tier1RouterPortIPAdress03;
+		LogicalRouterPort tier1RouterPort03 = routerPortServicePreCon.getLogicalRouterPort_DownlinkType_02(this.tier1RouterPort03_Name, tier1Router03_Id, logicalPort04_Name, logicalPort04_Id, 
+				tier1RouterPort03_Downlink_IPAddress);
+		routerPortServicePreCon.addLogicalRouterPort(tier1RouterPort03);
+		
+		
+		log.info("Add Tier0 Router Port 01 Uplink type! Connect to LogicalPort03.");
+		String tier0Router_Id = this.getRouterId(tier0RouterName_ActiveActiveType);
+		String logicalPort03_Id = this.getLogicalPortId(logicalPort03_Name);
+		String tier0RouterPort_Uplink_IPAddress = DefaultEnvironment.Tier0RouterPort_Uplink_IPAddress;
+		LogicalRouterPort_Uplink tier0RouterPort = routerPortServicePreCon.getLogicalRouterPort_UplinkType("Tier0", this.tier0RouterPort01_Name, tier0Router_Id, this.logicalPort03_Name, logicalPort03_Id, 
+				tier0RouterPort_Uplink_IPAddress);
+		routerPortServicePreCon.addLogicalRouterPort(tier0RouterPort);
+		
+		log.info("Add Tier0 Router Port 02 Uplink type! Connect to LogicalPort05.");
+		String tier0Router02_Id = this.getRouterId(this.tier0RouterName_ActiveStandbyType);
+		String logicalPort05_Id = this.getLogicalPortId(logicalPort05_Name);
+		String tier0RouterPort02_Uplink_IPAddress = DefaultEnvironment.Tier0RouterPort02_Uplink_IPAddress;
+		LogicalRouterPort_Uplink tier0RouterPort02 = routerPortServicePreCon.getLogicalRouterPort_UplinkType("Tier0", this.tier0RouterPort02_Name, tier0Router02_Id, this.logicalPort05_Name, logicalPort05_Id, 
+				tier0RouterPort02_Uplink_IPAddress);
+		routerPortServicePreCon.addLogicalRouterPort(tier0RouterPort02);
+	}
+	
 	public String getRouterPortId(String routerPortName){
 		return this.routerPortServicePreCon.getObjectId(routerPortName);
 	}
@@ -752,14 +807,16 @@ public class CombineComponentsServer {
 		log.info("Add Redistribution Criteria on Tier0Router_ActiveActiveType.");
 		String tier0Router_Id = this.getRouterId(tier0RouterName_ActiveActiveType);
 		RouterRedistributionRuleServicePreCon routerRedistributionRuleServicePreCon = new RouterRedistributionRuleServicePreCon(tier0Router_Id);	
-		String routeMapId = this.getMapId(this.routerMap01_Name, this.tier0RouterName_ActiveActiveType);
+//		String routeMapId = this.getMapId(this.routerMap01_Name, this.tier0RouterName_ActiveActiveType);
+		String routeMapId = null;
 		RoutingRedistributionRules routingRedistributionRules = routerRedistributionRuleServicePreCon.getRouteRedistributionRules(redistributionCriteriaName, routeMapId);
 		routerRedistributionRuleServicePreCon.modifyRoutingRedistributionRules(routingRedistributionRules);
 		
 		log.info("Add Redistribution Criteria on Tier0Router_ActiveStandbyType.");
 		String tier0Router02_Id = this.getRouterId(tier0RouterName_ActiveStandbyType);
 		RouterRedistributionRuleServicePreCon routerRedistributionRuleServicePreCon02 = new RouterRedistributionRuleServicePreCon(tier0Router02_Id);	
-		String routeMap02_Id = this.getMapId(this.routerMap02_Name, this.tier0RouterName_ActiveStandbyType);
+//		String routeMap02_Id = this.getMapId(this.routerMap02_Name, this.tier0RouterName_ActiveStandbyType);
+		String routeMap02_Id = null;
 		RoutingRedistributionRules routingRedistributionRules02 = routerRedistributionRuleServicePreCon02.getRouteRedistributionRules(redistributionCriteriaName, routeMap02_Id);
 		routerRedistributionRuleServicePreCon02.modifyRoutingRedistributionRules(routingRedistributionRules02);
 	}

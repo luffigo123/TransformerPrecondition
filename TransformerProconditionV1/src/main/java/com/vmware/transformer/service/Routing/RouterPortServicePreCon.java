@@ -202,6 +202,28 @@ public class RouterPortServicePreCon {
 	}
 	
 	
+	public LogicalRouterPort_Downlink getLogicalRouterPort_DownlinkType_02(String routerPortName, String logicalRouterId, String logicalPortName, String logicalPortId, String downlinkRouterPortIPAddress){
+
+		//log.info("Step 2-2: Get the default logical port info!");
+		BindingService linked_logical_switch_port_id = new BindingService(logicalPortName, "true", "LogicalPort", logicalPortId);
+		
+//		log.info("Step 2-3: Get the DHCPService info!");
+		ArrayList<ServiceBinding> service_bindings_list = new ArrayList<ServiceBinding>();
+
+		
+		//log.info("Step 2-4: Set subnet info");
+		ArrayList<String> iplist = new ArrayList<String>();
+		iplist.add(downlinkRouterPortIPAddress);
+		Subnet subnet01 = new Subnet(iplist, "24");
+		ArrayList<Subnet> subnetslist = new ArrayList<Subnet>();
+		subnetslist.add(subnet01);
+		
+		LogicalRouterPort_Downlink logicalRouterPort_Downlink = new LogicalRouterPort_Downlink(routerPortName, routerPortName, "LogicalRouterDownLinkPort", 
+				logicalRouterId, service_bindings_list, linked_logical_switch_port_id, subnetslist);
+		
+		return logicalRouterPort_Downlink;
+	}
+	
 	/**
 	 * 
 	 * @param tierType			Tier0, Tier1
