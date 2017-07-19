@@ -878,7 +878,11 @@ public class CombineComponentsServer {
 		StaticRouterServicePreCon staticRouterServicePreCon = new StaticRouterServicePreCon(tier0Router_AA_Id);
 		String staticRouterNetwork = DefaultEnvironment.staticRoute_Network;
 		String nextHopIPAddress = DefaultEnvironment.StaticRoute_NextHopIP_Tier0AA;
-		StaticRoute staticRoute = staticRouterServicePreCon.getStaticRoute_NoLogicalRouterPort(staticRouterNetwork, nextHopIPAddress);
+//		StaticRoute staticRoute = staticRouterServicePreCon.getStaticRoute_NoLogicalRouterPort(staticRouterNetwork, nextHopIPAddress);
+		
+		String logicalRoutePortId = this.getRouterPortId(tier0RouterPort01_Name);
+		StaticRoute staticRoute = staticRouterServicePreCon.getStaticRoute_WithLogicalRouterPort(staticRouterNetwork, nextHopIPAddress, this.tier0RouterPort01_Name, logicalRoutePortId);
+		
 		staticRouterServicePreCon.addStaticRouter(staticRoute);
 	}
 	

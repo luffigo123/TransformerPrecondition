@@ -2,6 +2,7 @@ package com.vmware.transformer.service.Routing;
 
 import java.util.ArrayList;
 
+import com.vmware.transformer.model.Routing.BindingService;
 import com.vmware.transformer.model.Routing.NextHop;
 import com.vmware.transformer.model.Routing.StaticRoute;
 import com.vmware.transformer.service.Service;
@@ -102,6 +103,27 @@ try {
 		next_hops.add(nexthop);
 		
 		StaticRoute staticRoute = new StaticRoute(staticRouterNetwork, "Description", "StaticRoute", null, next_hops);;
+		return staticRoute;
+	}
+	
+	/**
+	 * 
+	 * @param staticRouterNetwork
+	 * @param nextHopIPAddress
+	 * @param roterPortName
+	 * @param logicalRoutePortId
+	 * @return
+	 */
+	public StaticRoute getStaticRoute_WithLogicalRouterPort(String staticRouterNetwork, String nextHopIPAddress,String roterPortName, String logicalRoutePortId){
+
+		BindingService bindingService = new BindingService(roterPortName, "true", "LogicalRouterPort", logicalRoutePortId);
+		
+		String administrative_distance = "1";
+		NextHop nexthop = new NextHop(nextHopIPAddress, administrative_distance, bindingService);
+		ArrayList<NextHop> next_hops = new ArrayList<NextHop>();
+		next_hops.add(nexthop);
+		
+		StaticRoute staticRoute = new StaticRoute(staticRouterNetwork, roterPortName, "StaticRoute", null, next_hops);;	
 		return staticRoute;
 	}
 	
