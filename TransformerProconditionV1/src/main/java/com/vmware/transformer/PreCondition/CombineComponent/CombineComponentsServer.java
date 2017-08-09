@@ -133,6 +133,14 @@ public class CombineComponentsServer {
 	private String edgeNodeIP_01;
 	private String edgeNodeIP_02;
 	
+	//***********************************
+	private String length01;
+	private String length02;
+	private String length03;
+	private String length04;
+	private String length05;
+	//**********************************
+	
 	public CombineComponentsServer(){
 		ipPoolService = new IPPoolServicePreCon();
 		transportZoneServicePreCon = new TransportZoneServicePreCon();
@@ -150,7 +158,78 @@ public class CombineComponentsServer {
 		routerPortServicePreCon = new RouterPortServicePreCon();
 
 		ippoolName = "IPPool" + this.displayName;
-		transportZoneDisplayName = "transZone" + this.displayName;
+		
+		//***********
+		length01 = this.displayName.substring(0, 1);
+		length02 = this.displayName.substring(0, 2);
+		length03 = this.displayName.substring(0, 3);
+		length04 = this.displayName.substring(0, 4);
+		length05 = this.displayName.substring(0, 5);
+		//***********
+		
+//		transportZoneDisplayName = "transZone" + this.displayName;
+//		
+//		hostSwitchName = this.displayName;
+//		log.info("Make sure the hostSwitchName length is not exceed 12.");
+//		if(hostSwitchName.length() >= 12){
+//			hostSwitchName = hostSwitchName.substring(0, 9);
+//		}
+//		
+//		fabriUplinkProfile_ForTN_EdgeType_displayName = "UP_for_Edge" + this.displayName;
+//		fabriUplinkProfile_ForTN_ESXiType_displayName = "UP_For_Esxi" + this.displayName;
+//		
+//		activeUplinkName = this.checkNameLength(displayName);
+//		esxiNodeName = "ESXiNode" + this.displayName;
+//		
+//		edgeTransportNode01_Name = "EdgeTN01" + this.displayName;
+//		edgeTransportNode02_Name = "EdgeTN02" + this.displayName;
+//		esxiTransportNodeName = "ESXiTN" + this.displayName;
+//		
+//		edgeClusterProfileName = "EdgeClusterProfile" + this.displayName;
+//		edgeCluster01_Name = "EC01" + this.displayName;
+//		edgeCluster02_Name = "EC02" + this.displayName;
+//		
+//		logicalSwitch01_Name = "logicalSwitch01" + this.displayName;
+//		logicalSwitch02_Name = "logicalSwitch02" + this.displayName;
+//		logicalSwitch03_Name = "logicalSwitch03" + this.displayName;
+//		logicalSwitch04_Name = "logicalSwitch04" + this.displayName;
+//		logicalSwitch05_Name = "logicalSwitch05" + this.displayName;
+//		
+//		tier0RouterName_ActiveActiveType = "T0_AA" + this.displayName;
+//		tier0RouterName_ActiveStandbyType = "T0_AS" + this.displayName;
+//		
+//		tier1Router01_Name = "T1_01_AA" + this.displayName;
+//		tier1Router02_Name = "T1_02_AA" + this.displayName;
+//		tier1Router03_Name = "T1_03_AS" + this.displayName;
+//		
+//		dhcpRelayProfileName = "dhcpRelayProfile" + this.displayName;
+//		dhcpRelayServiceName = "dhcpRelayService" + this.displayName;
+//		
+//		logicalPort01_Name = "logicalPort01" + this.displayName;
+//		logicalPort02_Name = "logicalPort02" + this.displayName;
+//		logicalPort03_Name = "logicalPort03" + this.displayName;
+//		logicalPort04_Name = "logicalPort04" + this.displayName;
+//		logicalPort05_Name = "logicalPort05" + this.displayName;
+//		
+//		tier1RouterPort01_Name = "tier1RouterPort01_Downlink_AA" + this.displayName;
+//		tier1RouterPort02_Name = "tier1RouterPort02_Downlink_AA" + this.displayName;
+//		tier1RouterPort03_Name = "tier1RouterPort03_Downlink_AS" + this.displayName;
+//		
+//		tier0RouterPort01_Name = "tier0RouterPort01_Uplink_AA" + this.displayName;
+//		tier0RouterPort02_Name = "tier0RouterPort02_Uplink_AS" + this.displayName;
+//		
+//		ipPrefixList01_Name = "IPPrefixList01" + this.displayName;
+//		ipPrefixList02_Name = "IPPrefixList02" + this.displayName;
+//		
+//		routerMap01_Name = "Map01" + this.displayName;
+//		routerMap02_Name = "Map02" + this.displayName;
+//		
+//		redistributionCriteriaName = "redistributionCriteria" + this.displayName;
+//		
+//		edgeNodeIP_01 = DefaultEnvironment.edgeNodeIP;
+//		edgeNodeIP_02 = DefaultEnvironment.edgeNode2_IP;
+		
+		transportZoneDisplayName = this.displayName;
 		
 		hostSwitchName = this.displayName;
 		log.info("Make sure the hostSwitchName length is not exceed 12.");
@@ -158,56 +237,56 @@ public class CombineComponentsServer {
 			hostSwitchName = hostSwitchName.substring(0, 9);
 		}
 		
-		fabriUplinkProfile_ForTN_EdgeType_displayName = "UP_for_Edge" + this.displayName;
-		fabriUplinkProfile_ForTN_ESXiType_displayName = "UP_For_Esxi" + this.displayName;
+		fabriUplinkProfile_ForTN_EdgeType_displayName = this.displayName + this.length01;
+		fabriUplinkProfile_ForTN_ESXiType_displayName = this.displayName + this.length02;
 		
 		activeUplinkName = this.checkNameLength(displayName);
-		esxiNodeName = "ESXiNode" + this.displayName;
+		esxiNodeName = this.displayName;
 		
-		edgeTransportNode01_Name = "EdgeTN01" + this.displayName;
-		edgeTransportNode02_Name = "EdgeTN02" + this.displayName;
-		esxiTransportNodeName = "ESXiTN" + this.displayName;
+		edgeTransportNode01_Name = this.displayName + this.length01;
+		edgeTransportNode02_Name = this.displayName + this.length02;
+		esxiTransportNodeName = this.displayName + this.length03;
 		
-		edgeClusterProfileName = "EdgeClusterProfile" + this.displayName;
-		edgeCluster01_Name = "EC01" + this.displayName;
-		edgeCluster02_Name = "EC02" + this.displayName;
+		edgeClusterProfileName = this.displayName;
+		edgeCluster01_Name = this.displayName + this.length01;
+		edgeCluster02_Name = this.displayName + this.length02;
 		
-		logicalSwitch01_Name = "logicalSwitch01" + this.displayName;
-		logicalSwitch02_Name = "logicalSwitch02" + this.displayName;
-		logicalSwitch03_Name = "logicalSwitch03" + this.displayName;
-		logicalSwitch04_Name = "logicalSwitch04" + this.displayName;
-		logicalSwitch05_Name = "logicalSwitch05" + this.displayName;
+		logicalSwitch01_Name = this.displayName + this.length01;
+		logicalSwitch02_Name = this.displayName + this.length02;
+		logicalSwitch03_Name = this.displayName + this.length03;
+		logicalSwitch04_Name = this.displayName + this.length04;
+		logicalSwitch05_Name = this.displayName + this.length05;
 		
-		tier0RouterName_ActiveActiveType = "T0_AA" + this.displayName;
-		tier0RouterName_ActiveStandbyType = "T0_AS" + this.displayName;
+		tier0RouterName_ActiveActiveType = this.displayName + this.length01;
+		tier0RouterName_ActiveStandbyType = this.displayName + this.length02;
 		
-		tier1Router01_Name = "T1_01_AA" + this.displayName;
-		tier1Router02_Name = "T1_02_AA" + this.displayName;
-		tier1Router03_Name = "T1_03_AS" + this.displayName;
+		tier1Router01_Name = this.displayName + this.length03;
+		tier1Router02_Name = this.displayName + this.length04;
+		tier1Router03_Name = this.displayName + this.length05;
 		
-		dhcpRelayProfileName = "dhcpRelayProfile" + this.displayName;
-		dhcpRelayServiceName = "dhcpRelayService" + this.displayName;
+		dhcpRelayProfileName = this.displayName;
+		dhcpRelayServiceName = this.displayName;
 		
-		logicalPort01_Name = "logicalPort01" + this.displayName;
-		logicalPort02_Name = "logicalPort02" + this.displayName;
-		logicalPort03_Name = "logicalPort03" + this.displayName;
-		logicalPort04_Name = "logicalPort04" + this.displayName;
-		logicalPort05_Name = "logicalPort05" + this.displayName;
+		logicalPort01_Name = "logicalPort01" + length01;
+		logicalPort02_Name = "logicalPort02" + length02;
+		logicalPort03_Name = "logicalPort03" + length03;
+		logicalPort04_Name = "logicalPort04" + length04;
+		logicalPort05_Name = "logicalPort05" + length05;
 		
-		tier1RouterPort01_Name = "tier1RouterPort01_Downlink_AA" + this.displayName;
-		tier1RouterPort02_Name = "tier1RouterPort02_Downlink_AA" + this.displayName;
-		tier1RouterPort03_Name = "tier1RouterPort03_Downlink_AS" + this.displayName;
+		tier0RouterPort01_Name = this.displayName + length01;
+		tier0RouterPort02_Name = this.displayName + length02;
 		
-		tier0RouterPort01_Name = "tier0RouterPort01_Uplink_AA" + this.displayName;
-		tier0RouterPort02_Name = "tier0RouterPort02_Uplink_AS" + this.displayName;
+		tier1RouterPort01_Name = this.displayName + length03;
+		tier1RouterPort02_Name =  this.displayName + length04;
+		tier1RouterPort03_Name = this.displayName + length05;
 		
-		ipPrefixList01_Name = "IPPrefixList01" + this.displayName;
-		ipPrefixList02_Name = "IPPrefixList02" + this.displayName;
+		ipPrefixList01_Name = this.displayName + length01;
+		ipPrefixList02_Name = this.displayName + length02;
 		
-		routerMap01_Name = "Map01" + this.displayName;
-		routerMap02_Name = "Map02" + this.displayName;
+		routerMap01_Name = this.displayName + length01;
+		routerMap02_Name = this.displayName + length02;
 		
-		redistributionCriteriaName = "redistributionCriteria" + this.displayName;
+		redistributionCriteriaName = this.displayName;
 		
 		edgeNodeIP_01 = DefaultEnvironment.edgeNodeIP;
 		edgeNodeIP_02 = DefaultEnvironment.edgeNode2_IP;
