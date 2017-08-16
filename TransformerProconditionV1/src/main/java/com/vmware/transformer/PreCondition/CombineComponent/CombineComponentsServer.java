@@ -560,18 +560,19 @@ public class CombineComponentsServer {
 	 * ------ T1_03 connect to Tier0_ActiveStandbyType and logicalSwitch04
 	 */
 	public void setupTier1Routers(){
-		String edgeClusterId = this.getEdgeClusterId(this.edgeCluster01_Name);
+		String edgeCluster01_Id = this.getEdgeClusterId(this.edgeCluster01_Name);
+		String edgeCluster02_Id = this.getEdgeClusterId(this.edgeCluster02_Name);
 		String internal_transit_network = DefaultEnvironment.IntraTier1TransitNetwork;
 		log.info("Create Tier1 Router 01!");
-		LogicalRouterTier1 tier1Router01 = routingServicePreCon.getTier1Router(this.tier1Router01_Name, edgeClusterId, internal_transit_network);
+		LogicalRouterTier1 tier1Router01 = routingServicePreCon.getTier1Router(this.tier1Router01_Name, edgeCluster01_Id, internal_transit_network);
 		routingServicePreCon.addLogicalRouter(tier1Router01);
 		
 		log.info("Create Tier1 Router 02!");
-		LogicalRouterTier1 tier1Router02 = routingServicePreCon.getTier1Router(this.tier1Router02_Name, edgeClusterId, internal_transit_network);
+		LogicalRouterTier1 tier1Router02 = routingServicePreCon.getTier1Router(this.tier1Router02_Name, edgeCluster01_Id, internal_transit_network);
 		routingServicePreCon.addLogicalRouter(tier1Router02);
 		
 		log.info("Create Tier1 Router 03!");
-		LogicalRouterTier1 tier1Router03 = routingServicePreCon.getTier1Router(this.tier1Router03_Name, edgeClusterId, internal_transit_network);
+		LogicalRouterTier1 tier1Router03 = routingServicePreCon.getTier1Router(this.tier1Router03_Name, edgeCluster02_Id, internal_transit_network);
 		routingServicePreCon.addLogicalRouter(tier1Router03);
 	}
 	
