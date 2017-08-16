@@ -157,7 +157,7 @@ public class CombineComponentsServer {
 		logicalPortServicePreCon = new LogicalPortServicePreCon();
 		routerPortServicePreCon = new RouterPortServicePreCon();
 
-		ippoolName = "IPPool" + this.displayName;
+		ippoolName = this.displayName;
 		
 		//***********
 		length01 = this.displayName.substring(0, 1);
@@ -267,11 +267,11 @@ public class CombineComponentsServer {
 		dhcpRelayProfileName = this.displayName;
 		dhcpRelayServiceName = this.displayName;
 		
-		logicalPort01_Name = "logicalPort01" + length01;
-		logicalPort02_Name = "logicalPort02" + length02;
-		logicalPort03_Name = "logicalPort03" + length03;
-		logicalPort04_Name = "logicalPort04" + length04;
-		logicalPort05_Name = "logicalPort05" + length05;
+		logicalPort01_Name = this.displayName + length01;
+		logicalPort02_Name = this.displayName + length02;
+		logicalPort03_Name = this.displayName + length03;
+		logicalPort04_Name = this.displayName + length04;
+		logicalPort05_Name = this.displayName + length05;
 		
 		tier0RouterPort01_Name = this.displayName + length01;
 		tier0RouterPort02_Name = this.displayName + length02;
