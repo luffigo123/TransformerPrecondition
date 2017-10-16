@@ -5,7 +5,7 @@ import java.util.HashMap;
 import org.springframework.stereotype.Component;
 
 import com.vmware.transformer.dao.BaseDao;
-import com.vmware.transformer.utils.HttpReq;
+import com.vmware.transformer.utils.HttpReqUtils;
 import com.vmware.transformer.utils.JacksonUtils;
 
 @Component(value="dao")
@@ -13,7 +13,7 @@ public class DaoImpl implements BaseDao {
 
 	@Override
 	public void add(Object obj, String url) {
-		 HttpReq httpreq = new HttpReq();
+		 HttpReqUtils httpreq = new HttpReqUtils();
 //		 String content = ConvertJavaJson.convertToJsonByGson(obj);
 		 JacksonUtils jacksonUtil = new JacksonUtils();
 		 String content =jacksonUtil.toJson(obj);
@@ -26,14 +26,14 @@ public class DaoImpl implements BaseDao {
 
 	@Override
 	public void delete(String url) {
-		 HttpReq httpreq = new HttpReq();
+		 HttpReqUtils httpreq = new HttpReqUtils();
 		 httpreq.sendDeleteRequest(url);
 
 	}
 
 	@Override
 	public void modify(Object obj, String url) {
-		 HttpReq httpreq = new HttpReq();
+		 HttpReqUtils httpreq = new HttpReqUtils();
 //		 String content = ConvertJavaJson.convertToJsonByGson(obj);
 		 JacksonUtils jacksonUtil = new JacksonUtils();
 		 String content =jacksonUtil.toJson(obj);
@@ -44,7 +44,7 @@ public class DaoImpl implements BaseDao {
 
 	@Override
 	public String query(String url) {
-		 HttpReq httpreq = new HttpReq();
+		 HttpReqUtils httpreq = new HttpReqUtils();
 		 return httpreq.sendGetRequest(url);
 	}
 
