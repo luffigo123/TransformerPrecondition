@@ -65,9 +65,28 @@ public class UplinkProfilesServicePreCon {
 		return uplinkProfile;
 	}
 	
-	public UplinkProfile getDefaultUplinkProfile(String uplinkProfileDisplayName){
-		Uplink active01 = new Uplink("PNIC", "uplink-1");
-		Uplink standby01 = new Uplink("PNIC", "uplink-2");
+//	public UplinkProfile getDefaultUplinkProfile(String uplinkProfileDisplayName){
+//		Uplink active01 = new Uplink("PNIC", "uplink-1");
+//		Uplink standby01 = new Uplink("PNIC", "uplink-2");
+//		
+//		ArrayList<Uplink> active_list = new ArrayList<Uplink>();
+//		active_list.add(active01);
+//		ArrayList<Uplink> standby_list = new ArrayList<Uplink>();
+//		standby_list.add(standby01);
+//
+//		Teaming teaming = new Teaming(active_list, standby_list, "FAILOVER_ORDER");
+//
+//		ArrayList<Lags> lags_list = new ArrayList<Lags>();
+//
+//		UplinkProfile uplinkProfile = new UplinkProfile(uplinkProfileDisplayName, uplinkProfileDisplayName, teaming, lags_list, "0", "1600", "UplinkHostSwitchProfile");
+//		
+//		return uplinkProfile;
+//	}
+	
+	public UplinkProfile getDefaultUplinkProfile(String uplinkProfileDisplayName, String activeUplinkName){
+		String standbyUplinkName = activeUplinkName + activeUplinkName.substring(0, 1);
+		Uplink active01 = new Uplink("PNIC", activeUplinkName);
+		Uplink standby01 = new Uplink("PNIC", standbyUplinkName);
 		
 		ArrayList<Uplink> active_list = new ArrayList<Uplink>();
 		active_list.add(active01);
@@ -75,8 +94,12 @@ public class UplinkProfilesServicePreCon {
 		standby_list.add(standby01);
 
 		Teaming teaming = new Teaming(active_list, standby_list, "FAILOVER_ORDER");
-
+		
+		String lagsName = this.checkNameLength(activeUplinkName);
+		
+		Lags lags = new Lags(lagsName, "ACTIVE", "SRCDESTIPVLAN", "2", "SLOW");
 		ArrayList<Lags> lags_list = new ArrayList<Lags>();
+		lags_list.add(lags);
 
 		UplinkProfile uplinkProfile = new UplinkProfile(uplinkProfileDisplayName, uplinkProfileDisplayName, teaming, lags_list, "0", "1600", "UplinkHostSwitchProfile");
 		

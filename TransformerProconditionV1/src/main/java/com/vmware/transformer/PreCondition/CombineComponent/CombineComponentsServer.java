@@ -329,7 +329,8 @@ public class CombineComponentsServer {
 	
 	public void setupFabricUplinkProfiles(){
 		log.info("Add default Uplink Profile for TransportNode_ESXiType!");
-		UplinkProfile uplinkProfile_ForESXiType = uplinkProfilesServicePreCon.getDefaultUplinkProfile(this.fabriUplinkProfile_ForTN_ESXiType_displayName);
+//		UplinkProfile uplinkProfile_ForESXiType = uplinkProfilesServicePreCon.getDefaultUplinkProfile(this.fabriUplinkProfile_ForTN_ESXiType_displayName);
+		UplinkProfile uplinkProfile_ForESXiType = uplinkProfilesServicePreCon.getDefaultUplinkProfile(this.fabriUplinkProfile_ForTN_ESXiType_displayName, this.activeUplinkName);
 		uplinkProfilesServicePreCon.addUplinkProfile(uplinkProfile_ForESXiType);
 		
 		log.info("Add default Uplink Profile for TransportNode_EdgeType!");
