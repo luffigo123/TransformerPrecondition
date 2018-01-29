@@ -85,7 +85,8 @@ public class UplinkProfilesServicePreCon {
 	
 	public UplinkProfile getDefaultUplinkProfile(String uplinkProfileDisplayName, String activeUplinkName){
 		String standbyUplinkName = activeUplinkName + activeUplinkName.substring(0, 1);
-		Uplink active01 = new Uplink("PNIC", activeUplinkName);
+		String tempString = activeUplinkName.substring(1);
+		Uplink active01 = new Uplink("PNIC", tempString);
 		Uplink standby01 = new Uplink("PNIC", standbyUplinkName);
 		
 		ArrayList<Uplink> active_list = new ArrayList<Uplink>();
@@ -111,7 +112,7 @@ public class UplinkProfilesServicePreCon {
 	public String checkNameLength(String name){
 		String finalName = "";
 		if(name.length() >= 28){
-			finalName = name.substring(0,13);
+			finalName = name.substring(0,9);
 		}else{
 			finalName = name;
 		}
